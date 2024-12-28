@@ -9,8 +9,6 @@ const AllRubricsNews = async ({rubrics}) => {
 
     const filteredRubricNews = rubricNews.filter(rubric => rubric.news && rubric.news.length > 0);
 
-    console.log(filteredRubricNews, 'filter news')
-
     return (
         <div className="lg:w-[calc(100%-291px)] w-full">
             {filteredRubricNews.map((rubric) => (

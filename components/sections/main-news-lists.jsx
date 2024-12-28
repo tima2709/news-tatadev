@@ -9,7 +9,7 @@ const MainNewsLists = async () => {
     const mainNewsList = await getMainNewsListData();
 
     return (
-        <section className="lg:flex block pt-6 pb-14 gap-6">
+        <section className="lg:flex block pb-14 gap-6">
             <Carousel
                 opts={{
                     align: "start",
