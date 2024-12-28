@@ -108,3 +108,58 @@ main {
     @apply bg-background text-foreground;
   }
 }
+
+.reaction-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.reaction-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  padding: 5px 10px;
+  border-radius: 12px;
+  background-color: #f5f5f5; /* Light background for contrast */
+}
+
+.reaction-item:hover {
+  background-color: #e0e0e0; /* Slightly darker on hover */
+  transform: scale(1.1); /* Slight scale up when hovering */
+}
+
+.reaction-item:active {
+  transform: scale(0.9); /* Slightly shrink on click */
+}
+
+.emoji {
+  font-size: 20px; /* Slightly larger for better visibility */
+  transition: transform 0.2s ease;
+}
+
+.reaction-item:hover .emoji {
+  transform: scale(1.2); /* Slightly grow emoji on hover */
+}
+
+.reaction-count {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333; /* Default color */
+  transition: color 0.2s ease;
+}
+
+.reaction-count.max {
+  color: #999; /* Color for counts over 99 */
+}
+
+.reaction-item:hover .reaction-count {
+  color: #007bff; /* Change color to blue on hover */
+}
+
+.reaction-item:active .reaction-count {
+  color: #0056b3; /* Darker color when clicked */
+}
