@@ -15,8 +15,6 @@ const Page = async ({params}) => {
 
     const news = await getOneNews(slug);
 
-    console.log(news, 'news')
-
     const createdDate = format(news?.created_at, "dd.MM.yyyy")
 
     return (
@@ -38,13 +36,13 @@ const Page = async ({params}) => {
                     <Link href={`/search?author=${news?.author?.slug}`}>{news?.author?.full_name}</Link>
                     <div className="flex items-center gap-2 mt-5 mb-6">
                         {news?.tags?.map((tag) => (
-                            <Link href={`search?tags=${tag.slug}`}>
+                            <Link key={tag.slug} href={`search?tags=${tag.slug}`}>
                                 <span className="py-2 px-4 border border-[#D1E2FF] rounded-full font-semibold text-xs text-[#101828]">{tag.name}</span>
                             </Link>
                         ))}
                     </div>
                 </div>
-                <AddComments/>
+                <AddComments slug={news.slug}/>
             </div>
 
             <div className="w-[267px] border border-[#E0EBFF] rounded-[8px] bg-white h-full">

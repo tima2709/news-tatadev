@@ -2,15 +2,16 @@ import React from 'react';
 import {Container} from "@/components/shared/container";
 import SearchInput from "@/components/shared/search-input";
 import NewsList from "@/components/shared/news-list";
-import {getSearchedData} from "@/lib/fetchData";
+import {getRubrics, getSearchedData} from "@/lib/fetchData";
 import Image from "next/image";
+import NewsArchive from "@/components/shared/news-archive";
 
 const Page = async ({searchParams}) => {
 
     const query = await searchParams;
 
     const searchData = await getSearchedData(`${Object.keys(query)}=${Object.values(query)}`);
-
+    const date = Object.keys(query).join('')
     return (
         <Container>
             <div className="pt-6">
@@ -44,9 +45,16 @@ const Page = async ({searchParams}) => {
                         }
                     </div>
                 </div>
-                <div className="w-[267px] h-[436px] mt-[95px] rounded-lg bg-[#E0EBFF] flex items-center justify-center">
-                    Место под рекламный баннер
-                </div>
+                {
+                    date === 'date'
+                    ? <div className="mt-[95]">
+                        <NewsArchive/>
+                    </div>
+                        :
+                        <div className="w-[267px] h-[436px] mt-[95px] rounded-lg bg-[#E0EBFF] flex items-center justify-center">
+                            Место под рекламный баннер
+                        </div>
+                }
             </div>
         </Container>
     );

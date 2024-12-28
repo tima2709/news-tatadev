@@ -11,7 +11,7 @@ export default function Home() {
     return (
         <>
             <RunningNews/>
-            <Container>
+            <Container className="pb-12">
                 <WeatherExchange className="lg:hidden flex md:flex-row flex-col gap-4 md:justify-center justify-start  p-4 border border-[#E0EBFF] rounded-lg bg-white"/>
                 <MainNewsLists/>
                 <NewsRubrics/>
