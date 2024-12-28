@@ -1,4 +1,4 @@
-// import 'ckeditor5/ckeditor5.css';
+import 'ckeditor5/ckeditor5.css';
 import React from 'react';
 import {Container} from "@/components/shared/container";
 import TopPublicationsCard from "@/components/shared/top-publications-card";
@@ -12,9 +12,7 @@ import {format} from "date-fns";
 
 const Page = async ({params}) => {
     const {slug} = await params;
-
     const news = await getOneNews(slug);
-
     const createdDate = format(news?.created_at, "dd.MM.yyyy")
 
     return (
@@ -41,7 +39,7 @@ const Page = async ({params}) => {
                             </Link>
                         ))}
                     </div>
-                    <EmojiReactions reactions_data={news.reactions}/>
+                    <EmojiReactions slug={news.slug} reactions={news?.reactions}/>
                 </div>
                 <AddComments slug={news.slug}/>
             </div>
