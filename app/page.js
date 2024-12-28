@@ -6,7 +6,6 @@ import PartnersRunning from "@/components/shared/partners-running";
 import RunningNews from "@/components/shared/running-news";
 import React from "react";
 
-
 export default function Home() {
     return (
         <>

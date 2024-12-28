@@ -1,16 +1,16 @@
+// import 'ckeditor5/ckeditor5.css';
 import React from 'react';
 import {Container} from "@/components/shared/container";
 import TopPublicationsCard from "@/components/shared/top-publications-card";
 import DetailNewsImgCarousel from "@/components/shared/detail-news-img-carousel";
 import AddComments from "@/components/shared/add-comments";
+import EmojiReactions from '@/components/shared/emoji-reactions';
 import {getOneNews} from "@/lib/fetchData";
-import 'ckeditor5/ckeditor5.css';
 import Link from "next/link"
 import {format} from "date-fns";
 
 
 const Page = async ({params}) => {
-
     const {slug} = await params;
 
     const news = await getOneNews(slug);
@@ -41,6 +41,7 @@ const Page = async ({params}) => {
                             </Link>
                         ))}
                     </div>
+                    <EmojiReactions reactions_data={news.reactions}/>
                 </div>
                 <AddComments slug={news.slug}/>
             </div>
