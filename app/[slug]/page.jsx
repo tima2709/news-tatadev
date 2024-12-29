@@ -6,6 +6,7 @@ import DetailNewsImgCarousel from "@/components/shared/detail-news-img-carousel"
 import AddComments from "@/components/shared/add-comments";
 import EmojiReactions from '@/components/shared/emoji-reactions';
 import {getOneNews, getSimilarNewsList} from "@/lib/fetchData";
+import { processContent } from '@/lib/utils';
 import Link from "next/link"
 import {format} from "date-fns";
 
@@ -15,7 +16,8 @@ const Page = async ({params}) => {
     const news = await getOneNews(slug);
     const createdDate = format(news?.created_at, "dd.MM.yyyy")
     const similarNews = await getSimilarNewsList(slug, "5");
-
+    const content = processContent(news?.content);
+    
     return (
         <Container className="flex gap-6 py-6 mb-10 mt-6">
             <div className="flex-1">
@@ -29,7 +31,7 @@ const Page = async ({params}) => {
                     </h2>
                     {news.media && <DetailNewsImgCarousel images={news?.media}/>}
                     <div
-                        dangerouslySetInnerHTML={{ __html: news?.content }}
+                        dangerouslySetInnerHTML={{ __html: content }}
                         className="ck-content"
                     ></div>
                     <Link href={`/search?author=${news?.author?.slug}`}>{news?.author?.full_name}</Link>
