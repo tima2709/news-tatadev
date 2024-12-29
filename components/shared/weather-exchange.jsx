@@ -1,16 +1,21 @@
 import React from 'react';
 import Image from "next/image";
 import {cn} from "@/lib/utils";
-import {getExchangesRates} from "@/lib/fetchData";
+import { getWeather, getExchangesRates } from '@/lib/fetchData';
 
 const WeatherExchange = async ({className}) => {
 
     const exchangesRate = await getExchangesRates()
 
+    const weather = await getWeather().catch((error) => console.error(error));
+
     return (
         <div className={cn(className)}>
             <div className="flex items-center gap-2 mr-6 lx:mb-0 mb-2">
-                <Image src="/sun.svg" alt="sun icon" width={22} height={22}/> <p className="text-[#101828] font-medium">+11 °С в Бишкеке</p>
+                <Image src="/sun.svg" alt="sun icon" width={22} height={22}/>
+                <p className="text-[#101828] font-medium">
+                    {weather?.current_weather?.temperature} {weather?.current_weather_units?.temperature} в Бишкеке
+                </p>
             </div>
             <div className="flex items-center gap-6">
                 {exchangesRate?.map((rate) => (

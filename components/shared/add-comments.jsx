@@ -24,6 +24,9 @@ const formSchema = z.object({
     text: z.string().min(1, {
         message: "Поле не может быть пустым",
     }),
+    full_name: z.string().min(1, {
+        message: "Поле не может быть пустым",
+    })
 })
 
 const AddComments = ({ slug }) => {
@@ -40,6 +43,7 @@ const AddComments = ({ slug }) => {
     });
 
     const onSubmit = async (values) => {
+        console.log(values)
         try {
             await postComment(slug, values);
             toast({

@@ -11,7 +11,7 @@ const NewsList = ({news, className}) => {
     return (
         <div className={cn("md:flex rounded-[8px] border border-[#E0EBFF] overflow-hidden bg-white", className)}>
             <div className="sm:w-full md:w-[32%]">
-                <Image src={news.cover_img} alt={"img"} width={267} height={163} className="object-cover lg:rounded-l-[8px] w-full md:h-full h-[237px]"/>
+                <Image src={news.cover_img} alt={"img"} width={267} height={163} className="object-cover lg:rounded-l-[8px] w-full md:h-[163px] h-[237px]"/>
             </div>
             <div className="sm:w-full md:w-[68%] p-4">
                 <div className="flex justify-between items-center mb-2">

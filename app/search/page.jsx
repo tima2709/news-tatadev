@@ -2,11 +2,12 @@ import React from 'react';
 import {Container} from "@/components/shared/container";
 import SearchInput from "@/components/shared/search-input";
 import NewsList from "@/components/shared/news-list";
-import {getRubrics, getSearchedData} from "@/lib/fetchData";
+import {getRandomBanner, getRubrics, getSearchedData} from "@/lib/fetchData";
 import Image from "next/image";
 import NewsArchive from "@/components/shared/news-archive";
 import {format} from "date-fns";
 import {ru} from "date-fns/locale";
+import Banner from "@/components/shared/banner";
 
 const Page = async ({searchParams}) => {
 
@@ -16,6 +17,7 @@ const Page = async ({searchParams}) => {
 
     const searchData = await getSearchedData(`${keyOfQuery}=${slug}`);
     const rubrics = await getRubrics();
+    const bannerImg = await getRandomBanner();
 
     const rubric = rubrics.find(item => item.slug === slug);
 
@@ -23,7 +25,7 @@ const Page = async ({searchParams}) => {
 
     if (!isNaN(Date.parse(slug))) {
         const dateObject = new Date(slug);
-        formattedDate = format(dateObject, "d MMMM", { locale: ru });
+        formattedDate = format(dateObject, "d MMMM", {locale: ru});
     }
 
 
@@ -43,7 +45,7 @@ const Page = async ({searchParams}) => {
                                 ? "Результаты поиска"
                                 : keyOfQuery === "date"
                                     ? formattedDate
-                                    : rubric.title}
+                                    : rubric?.title}
                         </h2>
                         {keyOfQuery === "search" && (
                             searchData?.results?.length > 0 ? (
@@ -82,8 +84,9 @@ const Page = async ({searchParams}) => {
                         </div>
                         :
                         <div
-                            className="lg:flex hidden w-[267px] h-[436px] mt-[95px] rounded-lg bg-[#E0EBFF] flex items-center justify-center">
-                            Место под рекламный баннер
+                            className="lg:flex hidden">
+                            <Banner className="h-[436px] w-[267px] mb-6 mt-[55px] rounded-lg bg-[#E0EBFF]"
+                                    image={bannerImg?.side_picture}/>
                         </div>
                 }
             </div>
