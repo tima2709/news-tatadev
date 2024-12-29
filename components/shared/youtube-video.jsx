@@ -1,21 +1,24 @@
 import React from 'react';
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
 import Image from "next/image";
+import Link from "next/link"
 
 const YoutubeVideo = ({rubric}) => {
     return (
-        <Carousel className="max-w-[849px] pt-5">
-            <div className=" relative">
-                <CarouselPrevious className="absolute top-3 right-14 transform -translate-y-1/2" />
-                <CarouselNext className="absolute top-3 right-2 transform -translate-y-1/2" />
-            </div>
+        <Carousel>
+            <h2 className="mb-6">{rubric?.name}</h2>
             <CarouselContent className="flex">
                 {rubric.news.map((news, idx) => (
                     <CarouselItem key={idx} className="flex-shrink-0 pl-4">
-                        <Image src={news.cover_img} alt={"video"} width={849} height={472}/>
+                        <Link href={`/${news.slug}`}>
+                            <Image src={news.cover_img} alt={"video"} width={849} height={472} className="rounded-[29px]"/>
+                            <h3 className="mt-4 text-[#101828]">{news.title}</h3>
+                        </Link>
                     </CarouselItem>
                 ))}
             </CarouselContent>
+            <CarouselPrevious className="top-5 right-12"/>
+            <CarouselNext className="top-5 right-0"/>
         </Carousel>
     );
 };
