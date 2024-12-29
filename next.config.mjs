@@ -5,7 +5,7 @@ const nextConfig = {
           {
             protocol: 'https',
             hostname: 'news.tatadev.dev',
-            pathname: '**',
+            pathname: '/media/**',
           },
         ],
       },
