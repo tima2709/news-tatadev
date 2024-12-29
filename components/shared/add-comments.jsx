@@ -19,6 +19,7 @@ import { getComments, postComment } from "@/lib/fetchData";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
 import {zodResolver} from "@hookform/resolvers/zod";
+import {cn} from "@/lib/utils";
 
 const formSchema = z.object({
     text: z.string().min(1, {
@@ -79,7 +80,7 @@ const AddComments = ({ slug }) => {
     };
 
     return (
-        <div className="p-6 border border-[#E0EBFF] bg-white rounded-lg ">
+        <div className={cn("p-6 md:border border-[#E0EBFF] bg-white rounded-lg")}>
             <h3 className="mb-4">Комментарии</h3>
 
             <div>
