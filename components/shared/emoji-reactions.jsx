@@ -42,7 +42,9 @@ const EmojiReactions = ({ slug, reactions }) => {
       
       await destroyEmoji(slug).catch((error) => {
         setReacts(copied);
-        toastr.error(errorMessage || 'Произошла ошибка. Пожалуйста, попробуйте позже.');
+        console.error(error);
+
+        toastr.error('Произошла ошибка. Пожалуйста, попробуйте позже.');
       });
     } else {
 
@@ -67,7 +69,8 @@ const EmojiReactions = ({ slug, reactions }) => {
       
       await createEmoji(slug, emoji).catch((error) => {
         setReacts(copied);
-        toastr.error(errorMessage || 'Произошла ошибка. Пожалуйста, попробуйте позже.');
+        console.error(error);
+        toastr.error('Произошла ошибка. Пожалуйста, попробуйте позже.');
       });
     }
   };

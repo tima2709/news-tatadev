@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['news.tatadev.dev']
-    }
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'news.tatadev.dev',
+            pathname: '**',
+          },
+        ],
+      },
 };
 
 export default nextConfig;
