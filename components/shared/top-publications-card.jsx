@@ -2,16 +2,12 @@ import React from 'react';
 import Image from "next/image";
 import {cn} from "@/lib/utils";
 import Link from "next/link";
-import {getTopNewsData} from "@/lib/fetchData";
 
-const TopPublicationsCard = async ({className}) => {
-
-    const topNews = await getTopNewsData();
-
+const TopPublicationsCard = async ({className, newsList}) => {
     return (
         <>
             {
-                topNews.map((news) => (
+                newsList.map((news) => (
                     <div key={news.slug} className={cn("lg:max-w-[267px] w-full mx-auto px-7 my-4", className)}>
                         <Image
                             src={news?.cover_img}

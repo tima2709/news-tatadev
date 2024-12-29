@@ -2,11 +2,12 @@ import React from 'react';
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
 import NewsList from "@/components/shared/news-list";
 import TopPublicationsCard from "@/components/shared/top-publications-card";
-import {getMainNewsListData} from "@/lib/fetchData";
+import {getMainNewsListData, getTopNewsData} from "@/lib/fetchData";
 
 const MainNewsLists = async () => {
 
     const mainNewsList = await getMainNewsListData();
+    const topList = await getTopNewsData();
 
     return (
         <section className="lg:flex block pb-14 gap-6">
@@ -31,7 +32,7 @@ const MainNewsLists = async () => {
             </Carousel>
             <div className="lg:sticky top-0 lg:mt-0 mt-20 border border-[#E0EBFF] rounded-[8px] bg-white h-full">
                 <h4 className="md:text-sm text-[22px] mt-7 mb-4 text-center font-bold">Топ публикации</h4>
-                    <TopPublicationsCard className="last:mb-8"/>
+                    <TopPublicationsCard className="last:mb-8" newsList={topList}/>
             </div>
         </section>
     );

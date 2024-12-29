@@ -5,7 +5,7 @@ import TopPublicationsCard from "@/components/shared/top-publications-card";
 import DetailNewsImgCarousel from "@/components/shared/detail-news-img-carousel";
 import AddComments from "@/components/shared/add-comments";
 import EmojiReactions from '@/components/shared/emoji-reactions';
-import {getOneNews} from "@/lib/fetchData";
+import {getOneNews, getSimilarNewsList} from "@/lib/fetchData";
 import Link from "next/link"
 import {format} from "date-fns";
 
@@ -14,17 +14,18 @@ const Page = async ({params}) => {
     const {slug} = await params;
     const news = await getOneNews(slug);
     const createdDate = format(news?.created_at, "dd.MM.yyyy")
+    const similarNews = await getSimilarNewsList(slug, "5");
 
     return (
         <Container className="flex gap-6 py-6 mb-10 mt-6">
             <div className="flex-1">
                 <div className="p-6 border border-[#E0EBFF] bg-white rounded-lg mb-6">
                     <div className="flex items-center justify-between mb-5">
-                        <Link href={`/search`}><span className="font-bold text-[#1757B9] text-sm">{news.rubric.title}</span></Link>
+                        <Link href={`/search`}><span className="font-bold text-[#1757B9] text-sm">{news.rubric?.title}</span></Link>
                         <span className="font-normal text-[#777E98] text-xs">{createdDate}</span>
                     </div>
                     <h2 className="text-2xl font-bold mb-4">
-                        {news.title}
+                        {news?.title}
                     </h2>
                     {news.media && <DetailNewsImgCarousel images={news?.media}/>}
                     <div
@@ -43,13 +44,17 @@ const Page = async ({params}) => {
                 </div>
                 <AddComments slug={news.slug}/>
             </div>
-
-            <div className="w-[267px] border border-[#E0EBFF] rounded-[8px] bg-white h-full">
-                <h4 className="text-sm mt-7 mb-4 text-center font-bold">
-                    Похожие публикации
-                </h4>
-                <TopPublicationsCard classname="last:mb-8"/>
-            </div>
+            {
+                similarNews.length > 0 && (
+                    <div className="w-[267px] border border-[#E0EBFF] rounded-[8px] bg-white h-full">
+                    <h4 className="text-sm mt-7 mb-4 text-center font-bold">
+                        Похожие публикации
+                    </h4>
+                    <TopPublicationsCard classname="last:mb-8" newsList={similarNews}/>
+                </div>
+                )
+            }
+            
         </Container>
     );
 };
