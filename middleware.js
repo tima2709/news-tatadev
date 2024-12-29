@@ -11,7 +11,7 @@ export function middleware(request) {
 
     response.cookies.set('device_id', newDeviceId, {
       httpOnly: true,
-      secure: false, //process.env.NODE_ENV === 'production', // Использовать только HTTPS в проде
+      secure: process.env.NODE_ENV === 'production',
       sameSite: null,
       maxAge: 60 * 60 * 24 * 365,
       path: '/',
