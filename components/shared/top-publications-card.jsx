@@ -14,7 +14,7 @@ const TopPublicationsCard = async ({className, newsList}) => {
                             alt={news?.title}
                             width={180}
                             height={110}
-                            className="object-cover rounded-[8px] mb-2 lg:block hidden "
+                            className="object-cover rounded-[8px] mb-2 lg:block hidden w-full"
                         />
                         <Link href={`/${news?.slug}`}>
                             <p className="flex items-center gap-2 text-[#101828] text-xs font-normal hover:text-[#1757B9]">

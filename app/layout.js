@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/shared/header";
 import RunningNews from "@/components/shared/running-news";
 import Footer from "@/components/shared/footer";
+import {Toaster} from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
         <main>
             {children}
         </main>
+      <Toaster />
       <Footer/>
       </body>
     </html>

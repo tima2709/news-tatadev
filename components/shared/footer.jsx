@@ -1,15 +1,17 @@
 import React from 'react';
 import Image from "next/image";
-import {getHeaderData} from "@/lib/fetchData";
+import {getHeaderData, getRubrics, getSocialLinks, getStaticPages} from "@/lib/fetchData";
+import Link from 'next/link';
 
 const Footer = async () => {
 
     const headerData = await getHeaderData();
+    const aboutUsContacts = await getStaticPages();
+    const socialLinks = await getSocialLinks();
+    const rubrics = await getRubrics();
 
-    const secondGrid = ["Новости", "Политика", "Экономика", "Общество", "Культура", "Спорт", "Проишествия", "Новости Русского мира"]
-    const thirdGrid = ["Новости регионов", "Местное самоуправление", "Сотрудничество", "Наша гордость", "Технологии и гаджеты", "Видео ", "Фоторепортаж"]
-    const fourthGrid = ["О Нас", "Контакты", "Объявления", "Вакансии"]
-    const onMobileGrid = ["Праздники месяца", "Архив новостей"]
+    const fourthGrid = [{slug: "attentions", title: "Объявления",},{slug: "vacancies", title:  "Вакансии"}]
+    const onMobileGrid = [{slug: "holidays", title: "Праздники месяца"}, {slug: "archive-news", title: "Архив новостей"}]
 
     return (
         <footer
@@ -22,48 +24,71 @@ const Footer = async () => {
                 <p className="font-normal text-xs">{headerData.support_preview}
                 </p>
                 <div className="flex items-center gap-2 mt-5">
-                    <Image src={"/instagram.svg"} alt={"instagram"} width={32} height={32}/>
-                    <Image src={"/facebook.svg"} alt={"facebook"} width={32} height={32}/>
-                    <Image src={"/telegram.svg"} alt={"telegram"} width={32} height={32}/>
-                    <Image src={"/youtube.svg"} alt={"youtube"} width={32} height={32}/>
+                    {
+                        socialLinks.map((link) => (
+                            <a href={link.link} target="_blank" key={link.name}>
+                                <Image src={link.icon} alt={link.name} width={32} height={32}/>
+                            </a>
+                        ))
+                    }
                 </div>
             </div>
             <div className="md:order-2">
                 <ul className="list-none">
-                    {secondGrid.map((item, idx) => (
-                        <li key={idx} className="font-medium text-base text-[#101828] mb-4 hover:text-[#1757B9] duration-200 cursor-pointer">{item}</li>
+                    {rubrics.slice(0,8).map((item) => (
+                        <Link href={`/search?rubric=${item.slug}`} key={item.slug}>
+                            <li className="font-medium text-base text-[#101828] mb-4 hover:text-[#1757B9] duration-200 cursor-pointer">{item.title}</li>
+                        </Link>
                     ))}
                 </ul>
                 <ul className="list-none md:hidden block">
-                    {thirdGrid.map((item, idx) => (
-                        <li key={idx} className="font-medium text-base text-[#101828] mb-4 hover:text-[#1757B9] duration-200 cursor-pointer">{item}</li>
+                    {rubrics.slice(8).map((item) => (
+                        <Link href={`/search?rubric=${item.slug}`} key={item.slug}>
+                            <li className="font-medium text-base text-[#101828] mb-4 hover:text-[#1757B9] duration-200 cursor-pointer">{item.title}</li>
+                        </Link>
                     ))}
                 </ul>
             </div>
             <div className="md:block hidden">
                 <ul className="list-none">
-                    {thirdGrid.map((item, idx) => (
-                        <li key={idx} className="font-medium text-base text-[#101828] mb-4 hover:text-[#1757B9] duration-200 cursor-pointer">{item}</li>
+                    {rubrics.slice(8).map((item) => (
+                        <Link href={`/search?rubric=${item.slug}`} key={item.slug}>
+                            <li className="font-medium text-base text-[#101828] mb-4 hover:text-[#1757B9] duration-200 cursor-pointer">{item.title}</li>
+                        </Link>
                     ))}
                 </ul>
             </div>
             <div className="md:order-4 order-3">
                 <ul className="list-none">
-                    {fourthGrid.map((item, idx) => (
-                        <li key={idx} className="font-medium text-base text-[#101828] mb-4 hover:text-[#1757B9] duration-200 cursor-pointer">{item}</li>
+                    {aboutUsContacts.reverse().map((item) => (
+                        <Link key={item.slug} href={`/static-page/${item.slug}`}>
+                            <li className="font-medium text-base text-[#101828] mb-4 hover:text-[#1757B9] duration-200 cursor-pointer">
+                                {item.title}
+                            </li>
+                        </Link>
+                    ))}
+                    {fourthGrid.map((item) => (
+                        <Link key={item.slug} href={`/${item.slug}`}>
+                            <li className="font-medium text-base text-[#101828] mb-4 hover:text-[#1757B9] duration-200 cursor-pointer">{item.title}</li>
+                        </Link>
                     ))}
                     {
                         onMobileGrid.map((item,idx) => (
-                            <li key={idx} className="lg:hidden block font-medium text-base text-[#101828] mb-4 hover:text-[#1757B9] duration-200 cursor-pointer">{item}</li>
+                            <Link key={item.slug} href={`/${item.slug}`}>
+                                <li key={idx} className="lg:hidden block font-medium text-base text-[#101828] mb-4 hover:text-[#1757B9] duration-200 cursor-pointer">{item.title}</li>
+                            </Link>
                         ))
                     }
                 </ul>
                 <div className="md:hidden block">
                     <div className="flex items-center gap-2 mt-10 mb-7">
-                        <Image src={"/instagram.svg"} alt={"instagram"} width={32} height={32}/>
-                        <Image src={"/facebook.svg"} alt={"facebook"} width={32} height={32}/>
-                        <Image src={"/telegram.svg"} alt={"telegram"} width={32} height={32}/>
-                        <Image src={"/youtube.svg"} alt={"youtube"} width={32} height={32}/>
+                        {
+                            socialLinks.map((link) => (
+                                <a href={link.link} key={link.name}>
+                                    <Image src={link.icon} alt={link.name} width={32} height={32}/>
+                                </a>
+                            ))
+                        }
                     </div>
                     <div className="flex mb-4 gap-5 items-end">
                         <h6 className="font-normal text-xs">Сайт создан при поддержке Фонда “Русский мир”</h6>

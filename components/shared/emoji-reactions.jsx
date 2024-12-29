@@ -73,7 +73,7 @@ const EmojiReactions = ({ slug, reactions }) => {
   };
 
   return (
-    <div className="reaction-container">
+    <div className="flex flex-wrap reaction-container">
       {Object.entries(reacts).map(([emoji, data]) => (
         <div
           className="reaction-item"

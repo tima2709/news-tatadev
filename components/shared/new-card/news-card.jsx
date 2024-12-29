@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from "next/image";
+import Link from "next/link";
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
 
 const NewsCard = ({rubric}) => {
-    console.log(rubric, 'rubric')
     return (
         <Carousel
             opts={{
@@ -16,26 +16,30 @@ const NewsCard = ({rubric}) => {
             <CarouselContent>
                 {rubric.news.map((news) => (
                     <CarouselItem key={news.slug} className="lg:basis-1/4 md:basis-1/3 sm:basis-1/2">
-                        <div className="">
-                            <div className="rounded-xl border border-[#E0EBFF] overflow-hidden bg-white cursor-pointer">
-                                <div className="">
-                                    <Image
-                                        src={news.cover_img}
-                                        alt={"Новости"}
-                                        width={194}
-                                        height={118}
-                                        priority
-                                        className="object-cover w-full"
-                                    />
-                                </div>
-                                <div className="p-4">
-                                    <h2 className="font-semibold text-lg mb-2 line-clamp-2 hover:text-[#1757B9]">
+
+                        <div
+                            className="flex flex-col min-w-[165px] min-h-[288px] rounded-xl border border-[#E0EBFF] overflow-hidden bg-white cursor-pointer">
+                            <div className="relative w-full lg:h-[118px] h-[174px] flex-shrink-0">
+                                <Image
+                                    src={news.cover_img}
+                                    alt={news.title}
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                            <div className="flex flex-col flex-grow p-4">
+                                <Link href={`/${news.slug}`}>
+                                    <h2 className="font-semibold text-lg mb-2 line-clamp-3 hover:text-[#1757B9]">
                                         {news.title}
                                     </h2>
-                                    <p className="text-sm line-clamp-4">{news.preview}</p>
-                                </div>
+                                </Link>
+                                <p className="text-sm line-clamp-2">
+                                    {news.preview}
+                                </p>
                             </div>
                         </div>
+
+
                     </CarouselItem>
                 ))}
             </CarouselContent>
