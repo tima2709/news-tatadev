@@ -3,7 +3,6 @@ import Image from "next/image";
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
 
 const NewsCard = ({rubric}) => {
-    console.log(rubric, 'rubric')
     return (
         <Carousel
             opts={{

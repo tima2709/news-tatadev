@@ -12,8 +12,8 @@ const NewsRubrics = async () => {
         <section className="flex mt-9 gap-6">
             <AllRubricsNews rubrics={rubrics}/>
             <div className="lg:block hidden w-[267px] flex-shrink-0">
-                <HolidaysCalendarList className="mb-5 mt-20"/>
-                <NewsArchive className="mb-5"/>
+                <HolidaysCalendarList className="mb-5 mt-20 w-[267px]"/>
+                <NewsArchive className="mb-5" page="search"/>
             </div>
         </section>
     );

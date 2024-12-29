@@ -1,4 +1,6 @@
-import React from 'react';
+'use client'
+
+import React, {useEffect, useState} from 'react';
 import {
     Drawer,
     DrawerClose,
@@ -15,12 +17,25 @@ import SearchInput from "@/components/shared/search-input";
 import {getRubrics} from "@/lib/fetchData";
 import Link from "next/link";
 
-const MenuButton = async ({children}) => {
+const MenuButton = ({children}) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [rubrics, setRubrics] = useState([]);
 
-    const rubrics = await getRubrics();
+    useEffect(() => {
+        const fetchRubrics = async () => {
+            const data = await getRubrics();
+            setRubrics(data);
+        };
+
+        fetchRubrics();
+    }, []);
+
+    const handleClose = () => {
+        setIsOpen(false);
+    };
 
     return (
-        <Drawer direction="top">
+        <Drawer direction="top" open={isOpen} onOpenChange={setIsOpen}>
             <DrawerTrigger className="bg-[#E0EBFF] p-2 rounded-lg hover:bg-[#D1E2FF]">{children}</DrawerTrigger>
             <DrawerContent className="px-[150px] rounded-none">
                 <DrawerHeader>
@@ -29,7 +44,7 @@ const MenuButton = async ({children}) => {
                             <div className="flex items-start justify-between">
                                 <ul className="list-none flex flex-wrap gap-10">
                                     {rubrics.map((item) => (
-                                        <Link href={`/search?rubric=${item.slug}`} key={item.slug}>
+                                        <Link href={`/search?rubric=${item.slug}`} key={item.slug} onClick={handleClose}>
                                             <li className={`text-base text-[#101828] font-medium hover:text-[#1757B9] cursor-pointer`}>
                                                 {item.title}
                                             </li>
@@ -47,7 +62,7 @@ const MenuButton = async ({children}) => {
                                     </Button>
                                     <DrawerClose className="bg-[#E0EBFF] flex items-center justify-center h-10 w-10 rounded-lg hover:bg-[#D1E2FF]">
                                         <Image
-                                            src="/ic_x.svg"
+                                            src="/ic_x-blue.svg"
                                             alt="close icon"
                                             width={24}
                                             height={24}
@@ -56,7 +71,7 @@ const MenuButton = async ({children}) => {
                                 </div>
                             </div>
                             <div className="mt-8">
-                                <SearchInput/>
+                                <SearchInput handleClose={handleClose}/>
                             </div>
                         </nav>
                     </DrawerTitle>

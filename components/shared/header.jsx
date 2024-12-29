@@ -10,8 +10,6 @@ const Header = async () => {
     const headerData = await getHeaderData();
     const rubrics = await getRubrics();
 
-    // const navItems = ["Новости", "Политика", "Экономика", "Общество", "Культура", "Спорт", "Происшествия", "Новости Русского Мира",]
-
     return (
         <header
             className="xl:block flex flex-row-reverse justify-between max-w-[1440px] mx-auto xl:py-4 xl:px-[150px]  lg:px-20 md:px-12 p-5">

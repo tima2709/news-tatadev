@@ -18,7 +18,7 @@ const Page = async ({params}) => {
     const createdDate = format(news?.created_at, "dd.MM.yyyy")
 
     return (
-        <Container className="flex gap-6 py-6 mb-10 mt-6">
+        <Container className="lg:flex block gap-6 py-6 mb-10 mt-6">
             <div className="flex-1">
                 <div className="p-6 border border-[#E0EBFF] bg-white rounded-lg mb-6">
                     <div className="flex items-center justify-between mb-5">
@@ -34,9 +34,9 @@ const Page = async ({params}) => {
                         className="ck-content"
                     ></div>
                     <Link href={`/search?author=${news?.author?.slug}`}>{news?.author?.full_name}</Link>
-                    <div className="flex items-center gap-2 mt-5 mb-6">
+                    <div className="flex flex-wrap items-center gap-2 mt-5 mb-6">
                         {news?.tags?.map((tag) => (
-                            <Link key={tag.slug} href={`search?tags=${tag.slug}`}>
+                            <Link key={tag.slug} className="mb-2" href={`search?tags=${tag.slug}`}>
                                 <span className="py-2 px-4 border border-[#D1E2FF] rounded-full font-semibold text-xs text-[#101828]">{tag.name}</span>
                             </Link>
                         ))}
@@ -45,7 +45,7 @@ const Page = async ({params}) => {
                 <AddComments slug={news.slug}/>
             </div>
 
-            <div className="w-[267px] border border-[#E0EBFF] rounded-[8px] bg-white h-full">
+            <div className="lg:w-[267px] w-full lg:mt-0 mt-6 border border-[#E0EBFF] rounded-[8px] bg-white h-full">
                 <h4 className="text-sm mt-7 mb-4 text-center font-bold">
                     Похожие публикации
                 </h4>

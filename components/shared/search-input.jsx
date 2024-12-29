@@ -6,7 +6,7 @@ import {cn} from '@/lib/utils';
 import {Button} from '@/components/ui/button';
 import {useRouter} from "next/navigation";
 
-const SearchInput = ({className}) => {
+const SearchInput = ({className, handleClose}) => {
 
     const [search, setSearch] = useState('')
 
@@ -21,6 +21,7 @@ const SearchInput = ({className}) => {
     const handleSearchData = () => {
         if (search.trim()) {
             router.push(`/search?search=${search}`);
+            handleClose()
         }
     };
 
@@ -44,7 +45,7 @@ const SearchInput = ({className}) => {
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-transparent border-none hover:bg-white shadow-none"
                     onClick={handleClearSearch}
                 >
-                    <Image src="/ic_x.svg" alt="search icon" width={24} height={24}/>
+                    <Image src="/ic_x-blue.svg" alt="search icon" width={24} height={24}/>
                 </Button>
                 : <Button
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-transparent border-none hover:bg-white shadow-none"
