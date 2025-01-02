@@ -2,16 +2,42 @@ import React from 'react';
 import NewsArchive from "@/components/shared/news-archive";
 import NewsList from "@/components/shared/news-list";
 import Image from "next/image";
-import {getSearchedData} from "@/lib/fetchData";
+import {getMetaTags, getSearchedData} from "@/lib/fetchData";
 import {Container} from "@/components/shared/container";
+import {getQueryString} from "@/lib/getQueryString";
+
+export async function generateMetadata() {
+    const data = await getMetaTags('archive-news')
+    return {
+        title: data.title || "Чуйские известия - Главные новости и события",
+        description:data.description || "Ежедневные новости, политики, экономики, общества, спорта и культуры. Актуальная информация и аналитика.",
+        keywords: data.keywords || "новости, Чуйские известия, политика, экономика, общество, происшествия",
+        openGraph: {
+            title: data.title || "Project Meta Title",
+            description: data.description || "Project Meta Description",
+            url: data?.url_path || "https://news.tatadev.dev/",
+            type: "website",
+            images: [{ url: data.image || "/logo-image.png" }],
+        },
+        verification: {
+            google: "string",
+            yandex: "string",
+        },
+        icons: {
+            icon: "/favicon.ico",
+        },
+        authors: {
+            name: "TataDev Team",
+        },
+    }
+}
 
 const Page = async ({searchParams}) => {
 
     const query = await searchParams;
-    const slug = Object.values(query).join('');
-    const keyOfQuery = Object.keys(query).join('');
+    const queryString = getQueryString(query);
 
-    const searchData = await getSearchedData(`${keyOfQuery}=${slug}`);
+    const searchData = await getSearchedData(queryString);
 
     return (
         <Container>

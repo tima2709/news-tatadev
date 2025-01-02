@@ -36,14 +36,14 @@ const Footer = async () => {
             <div className="md:order-2">
                 <ul className="list-none">
                     {rubrics.slice(0,8).map((item) => (
-                        <Link href={`/search?rubric=${item.slug}`} key={item.slug}>
+                        <Link href={`/search?rubric=${item.slug}&page=1`} key={item.slug}>
                             <li className="font-medium text-base text-[#101828] mb-4 hover:text-[#1757B9] duration-200 cursor-pointer">{item.title}</li>
                         </Link>
                     ))}
                 </ul>
                 <ul className="list-none md:hidden block">
                     {rubrics.slice(8).map((item) => (
-                        <Link href={`/search?rubric=${item.slug}`} key={item.slug}>
+                        <Link href={`/search?rubric=${item.slug}&page=1`} key={item.slug}>
                             <li className="font-medium text-base text-[#101828] mb-4 hover:text-[#1757B9] duration-200 cursor-pointer">{item.title}</li>
                         </Link>
                     ))}
@@ -52,7 +52,7 @@ const Footer = async () => {
             <div className="md:block hidden">
                 <ul className="list-none">
                     {rubrics.slice(8).map((item) => (
-                        <Link href={`/search?rubric=${item.slug}`} key={item.slug}>
+                        <Link href={`/search?rubric=${item.slug}&page=1`} key={item.slug}>
                             <li className="font-medium text-base text-[#101828] mb-4 hover:text-[#1757B9] duration-200 cursor-pointer">{item.title}</li>
                         </Link>
                     ))}
@@ -94,7 +94,8 @@ const Footer = async () => {
                         <h6 className="font-normal text-xs">Сайт создан при поддержке Фонда “Русский мир”</h6>
                         <Image src={"/fond-logo.png"} alt={"logo"} width={88} height={25}/>
                     </div>
-                    <p className="font-normal text-xs">Размещенные материалы предназначены только для персонального
+                    <p className="font-normal text-xs text-[#777E98] max-w-[365px]">
+                        Размещенные материалы предназначены только для персонального
                         пользования. При использовании
                         материалов обязательна гиперссылка на ресурс.
                     </p>

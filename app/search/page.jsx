@@ -2,20 +2,51 @@ import React from 'react';
 import {Container} from "@/components/shared/container";
 import SearchInput from "@/components/shared/search-input";
 import NewsList from "@/components/shared/news-list";
-import {getRandomBanner, getRubrics, getSearchedData} from "@/lib/fetchData";
+import {getMetaTags, getRandomBanner, getRubrics, getSearchedData} from "@/lib/fetchData";
 import Image from "next/image";
 import NewsArchive from "@/components/shared/news-archive";
 import {format} from "date-fns";
 import {ru} from "date-fns/locale";
 import Banner from "@/components/shared/banner";
+import SearchPagination from "@/components/shared/search-pagination";
+import {getQueryString} from "@/lib/getQueryString";
+
+export async function generateMetadata() {
+    const data = await getMetaTags('search')
+    return {
+        title: data.title || "Чуйские известия - Главные новости и события",
+        description: data.description || "Ежедневные новости, политики, экономики, общества, спорта и культуры. Актуальная информация и аналитика.",
+        keywords: data.keywords || "новости, Чуйские известия, политика, экономика, общество, происшествия",
+        openGraph: {
+            title: data.title || "Project Meta Title",
+            description: data.description || "Project Meta Description",
+            url: data?.url_path || "https://news.tatadev.dev/",
+            type: "website",
+            images: [{url: data.image || "/logo-image.png"}],
+        },
+        verification: {
+            google: "string",
+            yandex: "string",
+        },
+        icons: {
+            icon: "/favicon.ico",
+        },
+        authors: {
+            name: "TataDev Team",
+        },
+    }
+}
 
 const Page = async ({searchParams}) => {
 
     const query = await searchParams;
-    const slug = Object.values(query).join('');
-    const keyOfQuery = Object.keys(query).join('');
 
-    const searchData = await getSearchedData(`${keyOfQuery}=${slug}`);
+    const [slug, page] = Object.values(query);
+    const [keyOfQuery] = Object.keys(query);
+
+    const queryString = getQueryString(query);
+
+    const searchData = await getSearchedData(queryString);
     const rubrics = await getRubrics();
     const bannerImg = await getRandomBanner();
 
@@ -23,12 +54,10 @@ const Page = async ({searchParams}) => {
 
     let formattedDate = null;
 
-    if (!isNaN(Date.parse(slug))) {
-        const dateObject = new Date(slug);
+    if (!isNaN(Date.parse(slug.toString()))) {
+        const dateObject = new Date(slug.toString());
         formattedDate = format(dateObject, "d MMMM", {locale: ru});
     }
-
-
     return (
         <Container>
             {
@@ -90,6 +119,14 @@ const Page = async ({searchParams}) => {
                         </div>
                 }
             </div>
+            {searchData.count >= 10 &&
+                <SearchPagination
+                    searchData={searchData}
+                    keyOfQuery={keyOfQuery}
+                    page={page}
+                    slug={slug}
+                />
+            }
         </Container>
     );
 };

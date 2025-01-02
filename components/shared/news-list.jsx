@@ -9,13 +9,13 @@ const NewsList = ({news, className}) => {
     const createdDate = format(news?.created_at, "dd.MM.yyyy")
 
     return (
-        <div className={cn("md:flex rounded-[8px] border border-[#E0EBFF] overflow-hidden bg-white", className)}>
-            <div className="sm:w-full md:w-[32%]">
-                <Image src={news.cover_img} alt={"img"} width={267} height={163} className="object-cover lg:rounded-l-[8px] w-full md:h-[163px] h-[237px]"/>
+        <div className={cn("md:flex rounded-[8px] md:h-[163px] border border-[#E0EBFF] overflow-hidden bg-white", className)}>
+            <div className="w-auto md:w-[32%] md:h-[163px] h-[237px]">
+                <Image src={news.cover_img} alt={"img"} width={267} height={163} className="object-cover lg:rounded-l-[8px] h-full w-full "/>
             </div>
-            <div className="sm:w-full md:w-[68%] p-4">
+            <div className="w-auto md:w-[68%] p-4">
                 <div className="flex justify-between items-center mb-2">
-                    <Link href={`/search?rubric=${news.rubric?.slug}`}><span className="text-[#1757B9]">{news?.rubric?.title}</span></Link>
+                    <Link href={`/search?rubric=${news.rubric?.slug}&page=1`}><span className="text-[#1757B9]">{news?.rubric?.title}</span></Link>
                     <span className="font-normal text-xs text-[#777E98]">{createdDate}</span>
                 </div>
                 <Link href={`/${news.slug}`}>

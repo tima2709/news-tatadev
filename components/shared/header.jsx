@@ -16,7 +16,7 @@ const Header = async () => {
             <nav className="flex items-center justify-between gap-4">
                 <ul className="xl:flex hidden list-none justify-between items-center max-w-[1000px] w-full">
                     {rubrics.slice(0,8).map((item) => (
-                        <Link href={`/search?rubric=${item.slug}`} key={item.slug}><li>{item.title}</li></Link>
+                        <Link href={`/search?rubric=${item.slug}&page=1`} key={item.slug}><li className="font-medium text-base hover:text-[#1757B9] duration-200">{item.title}</li></Link>
                     ))}
                 </ul>
                 <div className="flex md:gap-4 gap-2">
@@ -47,12 +47,12 @@ const Header = async () => {
                             <Image
                                 src={headerData?.logo}
                                 alt="logo"
-                                layout="fill"
+                                fill
                                 objectFit="contain"
                             />
                         </div>
                         <div>
-                            <h1 className="font-black xl:text-[42.64px] lg:text-3xl text-[21px] text-[#1757B9]">{headerData.title}</h1>
+                            <h1 className="site-title font-black xl:text-[42.64px] lg:text-3xl text-[21px] text-[#1757B9]">{headerData.title}</h1>
                             <p className="text-[#101828] lg:text-lg md:text-sm text-[9px]">{headerData.preview}</p>
                         </div>
                     </div>

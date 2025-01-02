@@ -1,15 +1,38 @@
 import React from 'react';
-import NewsList from "@/components/shared/news-list";
 import Image from "next/image";
 import {Container} from "@/components/shared/container";
-import {getAttentionsData} from "@/lib/fetchData";
+import {getAttentionsData, getMetaTags} from "@/lib/fetchData";
 import AttetionList from "@/components/shared/attention-list";
+
+export async function generateMetadata() {
+    const data = await getMetaTags('attentions')
+    return {
+        title: data.title || "Чуйские известия - Главные новости и события",
+        description:data.description || "Ежедневные новости, политики, экономики, общества, спорта и культуры. Актуальная информация и аналитика.",
+        keywords: data.keywords || "новости, Чуйские известия, политика, экономика, общество, происшествия",
+        openGraph: {
+            title: data.title || "Project Meta Title",
+            description: data.description || "Project Meta Description",
+            url: data?.url_path || "https://news.tatadev.dev/",
+            type: "website",
+            images: [{ url: data.image || "/logo-image.png" }],
+        },
+        verification: {
+            google: "string",
+            yandex: "string",
+        },
+        icons: {
+            icon: "/favicon.ico",
+        },
+        authors: {
+            name: "TataDev Team",
+        },
+    }
+}
 
 const Page = async () => {
 
     const attentions = await getAttentionsData();
-
-    console.log(attentions, 'att')
 
     return (
         <Container>
