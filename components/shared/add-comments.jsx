@@ -115,8 +115,14 @@ const AddComments = ({ slug }) => {
                                                 type="text"
                                                 onKeyDown={handleKeyDown}
                                                 placeholder="Напишите комментарий"
-                                                className="w-full px-4 py-4 border border-[#E0EBFF] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#D1E2FF]"
+                                                className="w-full px-4 py-4 border border-[#E0EBFF] pr-12 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#D1E2FF]"
                                             />
+                                            <Button
+                                                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-transparent border-none hover:bg-white shadow-none"
+                                                onClick={() => setIsDialogOpen(true)}
+                                            >
+                                                <Image src="/ic_send.svg" alt="search icon" width={24} height={24}/>
+                                            </Button>
                                         </div>
                                     </FormControl>
                                     <FormDescription></FormDescription>
@@ -134,9 +140,9 @@ const AddComments = ({ slug }) => {
                                         <div className="relative">
                                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                                 <DialogTrigger
-                                                    className="absolute right-3 -top-[60px] transform -translate-y-1/2 bg-transparent border-none hover:bg-white shadow-none"
+                                                    // className="absolute right-3 -top-[60px] transform -translate-y-1/2 bg-transparent border-none hover:bg-white shadow-none"
                                                 >
-                                                    <Image src="/ic_send.svg" alt="send icon" width={24} height={24} />
+                                                    {/*<Image src="/ic_send.svg" alt="send icon" width={24} height={24} />*/}
                                                 </DialogTrigger>
                                                 <DialogContent className="md:w-full w-[90%] rounded-lg ">
                                                     <DialogHeader>

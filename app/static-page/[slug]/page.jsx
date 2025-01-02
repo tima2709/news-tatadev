@@ -1,6 +1,35 @@
 import React from 'react';
-import {getStaticPagesBySlug} from "@/lib/fetchData";
+import {getMetaTags, getStaticPagesBySlug} from "@/lib/fetchData";
 import {Container} from "@/components/shared/container";
+
+export async function generateMetadata({params}) {
+
+    const slug = await params;
+
+    const data = await getMetaTags(`${slug}`)
+    return {
+        title: data.title || "Чуйские известия - Главные новости и события",
+        description:data.description || "Ежедневные новости, политики, экономики, общества, спорта и культуры. Актуальная информация и аналитика.",
+        keywords: data.keywords || "новости, Чуйские известия, политика, экономика, общество, происшествия",
+        openGraph: {
+            title: data.title || "Project Meta Title",
+            description: data.description || "Project Meta Description",
+            url: data?.url_path || "https://news.tatadev.dev/",
+            type: "website",
+            images: [{ url: data.image || "/logo-image.png" }],
+        },
+        verification: {
+            google: "string",
+            yandex: "string",
+        },
+        icons: {
+            icon: "/favicon.ico",
+        },
+        authors: {
+            name: "TataDev Team",
+        },
+    }
+}
 
 const Page = async ({params}) => {
 

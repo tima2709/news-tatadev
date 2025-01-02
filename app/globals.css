@@ -9,6 +9,21 @@
   text-decoration: none;
 }
 
+@font-face {
+  font-family: 'AlverataW06-InformalPEBlk';
+  src: url('/fonts/AlverataW06-InformalPEBlk.woff2') format('woff2'),
+  url('/fonts/AlverataW06-InformalPEBlk.woff') format('woff'),
+  url('/fonts/AlverataW06-InformalPEBlk.eot') format('embedded-opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.site-title {
+  font-family: 'AlverataW06-InformalPEBlk', sans-serif;
+  font-weight: 900;
+}
+
 h1,h2,h3,h4,h5,h6 {
   color: #101828;
 }

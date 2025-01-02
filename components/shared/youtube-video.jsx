@@ -11,14 +11,14 @@ const YoutubeVideo = ({rubric}) => {
                 {rubric.news.map((news, idx) => (
                     <CarouselItem key={idx} className="flex-shrink-0 pl-4">
                         <Link href={`/${news.slug}`}>
-                            <Image src={news.cover_img} alt={"video"} width={849} height={472} className="rounded-[29px]"/>
+                            <Image src={news.cover_img} alt={"video"} width={849} height={472} className="lg:rounded-[29px] rounded-[11px]"/>
                             <h3 className="mt-4 text-[#101828]">{news.title}</h3>
                         </Link>
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselPrevious className="top-5 right-12"/>
-            <CarouselNext className="top-5 right-0"/>
+            <CarouselPrevious className="top-5 right-12 md:block hidden"/>
+            <CarouselNext className="top-5 right-0 md:block hidden"/>
         </Carousel>
     );
 };
