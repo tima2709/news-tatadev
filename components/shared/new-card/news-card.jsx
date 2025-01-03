@@ -27,7 +27,7 @@ const NewsCard = ({rubric}) => {
                                 />
                             </div>
                             <div className="flex flex-col flex-grow p-4">
-                                <Link href={`/${news.slug}`}>
+                                <Link href={`/news-detail/${news.slug}`}>
                                     <h4 className="mb-2 line-clamp-3 hover:text-[#1757B9]">
                                         {news.title}
                                     </h4>

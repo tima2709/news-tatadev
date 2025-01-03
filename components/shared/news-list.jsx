@@ -18,7 +18,7 @@ const NewsList = ({news, className}) => {
                     <Link href={`/search?rubric=${news.rubric?.slug}&page=1`}><span className="text-[#1757B9]">{news?.rubric?.title}</span></Link>
                     <span className="font-normal text-xs text-[#777E98]">{createdDate}</span>
                 </div>
-                <Link href={`/${news.slug}`}>
+                <Link href={`/news-detail/${news.slug}`}>
                     <h4 className="mb-2 line-clamp-2 transition hover:duration-700 hover:text-[#1757B9]">{news?.title}</h4>
                 </Link>
                 <p className="md:line-clamp-3 line-clamp-2 md:text-sm text-xs text-[#777E98]">{news.preview}</p>
