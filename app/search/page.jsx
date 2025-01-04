@@ -7,7 +7,6 @@ import {
     getMetaTags,
     getRandomBanner,
     getRubricBySlug,
-    getRubrics,
     getSearchedData
 } from "@/lib/fetchData";
 import Image from "next/image";
@@ -17,6 +16,7 @@ import {ru} from "date-fns/locale";
 import Banner from "@/components/shared/banner";
 import SearchPagination from "@/components/shared/search-pagination";
 import {getQueryString} from "@/lib/getQueryString";
+import YoutubeCard from "@/components/shared/youtube-card";
 
 export async function generateMetadata() {
     const data = await getMetaTags('search')
@@ -100,19 +100,28 @@ const Page = async ({searchParams}) => {
                         )}
                     </div>
                     <div>
-                        {searchData?.results.length
-                            ? searchData?.results?.map((news) => (
-                                <NewsList key={news.slug} news={news} className="mb-6"/>
-                            ))
-                            :
-                            <Image
-                                src="/image_nothing-found.png"
-                                alt={'image nothing found'}
-                                width={360}
-                                height={360}
-                                className="mt-11"
-                            />
+                        {
+                            searchData?.results?.length > 0 ? (
+                                slug === "video" ? (
+                                    searchData.results.map((news) => (
+                                        <YoutubeCard key={news.slug} news={news} className="mb-6" />
+                                    ))
+                                ) : (
+                                    searchData.results.map((news) => (
+                                        <NewsList key={news.slug} news={news} className="mb-6" />
+                                    ))
+                                )
+                            ) : (
+                                <Image
+                                    src="/image_nothing-found.png"
+                                    alt="image nothing found"
+                                    width={360}
+                                    height={360}
+                                    className="mt-11"
+                                />
+                            )
                         }
+
                     </div>
                 </div>
                 {

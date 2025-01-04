@@ -1,7 +1,7 @@
 import React from 'react';
 import NewsCard from "@/components/shared/new-card/news-card";
 import {getNewsByRubrics} from "@/lib/fetchData";
-import YoutubeVideo from "@/components/shared/youtube-video";
+import YoutubeVideoCarousel from "@/components/shared/youtube-video-carousel";
 
 const AllRubricsNews = async ({rubrics}) => {
 
@@ -14,7 +14,7 @@ const AllRubricsNews = async ({rubrics}) => {
             {filteredRubricNews.map((rubric) => (
                 rubric.type === "article"
                     ? <NewsCard key={rubric.slug} rubric={rubric}/>
-                    : <YoutubeVideo key={rubric.slug} rubric={rubric}/>
+                    : <YoutubeVideoCarousel key={rubric.slug} rubric={rubric}/>
             ))}
         </div>
     );
