@@ -55,7 +55,7 @@ const PaginationPrevious = ({
     size="default"
     className={cn("gap-1 pl-2.5", className)}
     {...props}>
-      <Image src="/ic_arrow-left.svg" alt="arrow icon right" width={24} height={24}/>
+      <Image src="/ic_arrow-left-gray.svg" alt="arrow icon right" width={24} height={24}/>
     <span></span>
   </PaginationLink>
 )
@@ -71,7 +71,7 @@ const PaginationNext = ({
     className={cn("gap-1 pr-2.5", className)}
     {...props}>
     <span></span>
-      <Image src="/ic_arrow-right.svg" alt="arrow icon right" width={24} height={24}/>
+      <Image src="/ic_arrow-right-gray.svg" alt="arrow icon right" width={24} height={24}/>
   </PaginationLink>
 )
 PaginationNext.displayName = "PaginationNext"

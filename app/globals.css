@@ -35,6 +35,11 @@ p {
   color: #101828;
 }
 
+.ck-content p {
+  line-height: 22px;
+  font-weight: 400;
+}
+
 h2 {
   font-weight: 700;
   font-size: 26px;
@@ -61,6 +66,24 @@ h5 {
 
 main {
   background-color: #F5F9FF;
+}
+
+@media screen and (max-width: 950px) {
+  main {
+    margin-top: 100px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    margin-top: 86px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  main {
+    margin-top: 82px;
+  }
 }
 
 @layer base {

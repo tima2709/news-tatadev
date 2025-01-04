@@ -2,7 +2,14 @@ import React from 'react';
 import {Container} from "@/components/shared/container";
 import SearchInput from "@/components/shared/search-input";
 import NewsList from "@/components/shared/news-list";
-import {getMetaTags, getRandomBanner, getRubrics, getSearchedData} from "@/lib/fetchData";
+import {
+    getAuthorBySlug,
+    getMetaTags,
+    getRandomBanner,
+    getRubricBySlug,
+    getRubrics,
+    getSearchedData
+} from "@/lib/fetchData";
 import Image from "next/image";
 import NewsArchive from "@/components/shared/news-archive";
 import {format} from "date-fns";
@@ -47,10 +54,9 @@ const Page = async ({searchParams}) => {
     const queryString = getQueryString(query);
 
     const searchData = await getSearchedData(queryString);
-    const rubrics = await getRubrics();
     const bannerImg = await getRandomBanner();
-
-    const rubric = rubrics.find(item => item.slug === slug);
+    const rubric = await getRubricBySlug(slug);
+    const author = await getAuthorBySlug(slug);
 
     let formattedDate = null;
 
@@ -58,6 +64,7 @@ const Page = async ({searchParams}) => {
         const dateObject = new Date(slug.toString());
         formattedDate = format(dateObject, "d MMMM", {locale: ru});
     }
+
     return (
         <Container>
             {
@@ -74,7 +81,9 @@ const Page = async ({searchParams}) => {
                                 ? "Результаты поиска"
                                 : keyOfQuery === "date"
                                     ? formattedDate
-                                    : rubric?.title}
+                                    : rubric ? rubric?.title : `Автор: ${author?.full_name}`
+
+                            }
                         </h2>
                         {keyOfQuery === "search" && (
                             searchData?.results?.length > 0 ? (

@@ -36,25 +36,27 @@ const Page = async ({searchParams}) => {
 
     const query = await searchParams;
     const queryString = getQueryString(query);
-
     const searchData = await getSearchedData(queryString);
 
     return (
         <Container>
             <NewsArchive page="archive-news" className="mb-6"/>
             <div>
-                {searchData?.results.length
+                {searchData?.results?.length
                     ? searchData?.results?.map((news) => (
                         <NewsList key={news.slug} news={news} className="mb-6"/>
                     ))
                     :
-                    <Image
-                        src="/image_nothing-found.png"
-                        alt={'image nothing found'}
-                        width={360}
-                        height={360}
-                        className="mt-11"
-                    />
+                    <div>
+                        <h2>По данному запросу ничего не найдено</h2>
+                        <Image
+                            src="/image_nothing-found.png"
+                            alt={'image nothing found'}
+                            width={360}
+                            height={360}
+                            className="mt-11"
+                        />
+                    </div>
                 }
             </div>
         </Container>

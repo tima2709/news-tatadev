@@ -64,9 +64,10 @@ export default {
 		screens: {
 			sm: '480px',
 			'mm': '661px',
-			md: '768px',
+			md: '769px',
+			'lm': '950px',
 			lg: '1025px',
-			'lx': '1200',
+			'lx': '1100px',
 			xl: '1330px',
 			'2xl': '1440px',
 		},

@@ -50,6 +50,7 @@ const NewsArchive = ({className, page}) => {
                 disabled={(date) =>
                     date > new Date() || date < new Date("1991-01-01")
                 }
+                className="p-0"
                 modifiers={{hasContent: hasContent}}
                 modifiersStyles={{
                     hasContent: {

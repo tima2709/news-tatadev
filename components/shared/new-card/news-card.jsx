@@ -12,37 +12,40 @@ const NewsCard = ({rubric}) => {
             className="my-6"
             key={rubric.slug}
         >
-            <h2 className="mb-6">{rubric?.name}</h2>
+            <Link href={`/search/?rubric=${rubric.slug}&page=1`}><h2
+                className="mb-6 hover:text-[#1757B9] duration-200 md:text-[26px] text-[22px]">{rubric?.name}</h2></Link>
             <CarouselContent className="sm:w-auto w-[287px]">
                 {rubric.news.map((news) => (
                     <CarouselItem key={news.slug} className="lg:basis-1/4 md:basis-1/3 sm:basis-1/2">
-                        <div
-                            className="flex flex-col min-w-[165px] min-h-[288px] rounded-xl border border-[#E0EBFF] overflow-hidden bg-white cursor-pointer">
-                            <div className="relative w-full lg:h-[118px] h-[174px] flex-shrink-0">
-                                <Image
-                                    src={news.cover_img}
-                                    alt={news.title}
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                            <div className="flex flex-col flex-grow p-4">
-                                <Link href={`/news-detail/${news.slug}`}>
-                                    <h4 className="mb-2 line-clamp-3 hover:text-[#1757B9]">
+                        <Link href={`/news-detail/${news.slug}`}>
+                            <div
+                                className="group flex flex-col min-w-[165px] min-h-[288px] h-full rounded-xl border border-[#E0EBFF] overflow-hidden bg-white cursor-pointer">
+                                <div className="relative w-full lg:h-[118px] h-[174px] flex-shrink-0">
+                                    <Image
+                                        src={news.cover_img}
+                                        alt={news.title}
+                                        fill
+                                        className="object-cover group-hover:opacity-90 duration-200"
+                                    />
+                                </div>
+                                <div className="flex flex-col flex-grow p-4">
+
+                                    <h4 className="mb-2 line-clamp-4 group-hover:text-[#1757B9]">
                                         {news.title}
                                     </h4>
-                                </Link>
-                                <p className="text-sm line-clamp-2">
-                                    {news.preview}
-                                </p>
+
+                                    <p className="text-sm line-clamp-3 text-[#777E98]">
+                                        {news.preview}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
 
 
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselPrevious className="top-5 right-12 md:flex hidden"/>
+            <CarouselPrevious className="top-5 right-10 md:flex hidden"/>
             <CarouselNext className="top-5 right-0 md:flex hidden"/>
         </Carousel>
     );

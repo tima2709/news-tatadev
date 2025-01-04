@@ -44,7 +44,6 @@ const AddComments = ({ slug }) => {
     });
 
     const onSubmit = async (values) => {
-        console.log(values)
         try {
             await postComment(slug, values);
             toast({
@@ -149,9 +148,9 @@ const AddComments = ({ slug }) => {
                                                         <DialogTitle className="font-bold text-[22px] text-[#101828]">Представьтесь,
                                                             пожалуйста</DialogTitle>
                                                         <DialogDescription>
-                                                            <span className="font-normal text-sm text-[#101828] pb-2">Введите имя, которое будет отображаться рядом с вашим комментарием.</span>
+                                                            <span className="font-normal text-sm text-[#101828]">Введите имя, которое будет отображаться рядом с вашим комментарием.</span>
                                                             <br />
-                                                            <span className="font-medium text-base text-[#101828]">Внимание! Комментарий будет доступен всем пользователям после прохождения модерации</span>
+                                                            <span className="block mt-3 font-medium text-base text-[#101828]">Внимание! Комментарий будет доступен всем пользователям после прохождения модерации</span>
                                                         </DialogDescription>
                                                         <div className="py-5">
                                                             <input

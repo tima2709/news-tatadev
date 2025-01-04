@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import Image from "next/image";
 
 const CarouselContext = React.createContext(null)
 
@@ -149,7 +150,7 @@ const CarouselItem = React.forwardRef(({ className, ...props }, ref) => {
 })
 CarouselItem.displayName = "CarouselItem"
 
-const CarouselPrevious = React.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+const CarouselPrevious = React.forwardRef(({children, className, variant = "outline", size = "icon", ...props }, ref) => {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel()
 
   return (
@@ -163,14 +164,14 @@ const CarouselPrevious = React.forwardRef(({ className, variant = "outline", siz
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}>
-        <ChevronLeft color="#1757b9" className="h-4 w-4" />
+        {children ? children : <Image color="#1757B9" src={"/ic_arrow-left-blue.svg"} alt={"icon left"} width={24} height={24}/>}
       <span className="sr-only">Previous slide</span>
     </Button>)
   );
 })
 CarouselPrevious.displayName = "CarouselPrevious"
 
-const CarouselNext = React.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+const CarouselNext = React.forwardRef(({children, className, variant = "outline", size = "icon", ...props }, ref) => {
   const { orientation, scrollNext, canScrollNext } = useCarousel()
 
   return (
@@ -184,7 +185,7 @@ const CarouselNext = React.forwardRef(({ className, variant = "outline", size = 
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}>
-        <ChevronRight color="#1757b9" className="h-4 w-4"/>
+        {children ? children : <Image color="#1757B9" src={"/ic_arrow-right-blue.svg"} alt={"icon right"} width={24} height={24}/>}
       <span className="sr-only">Next slide</span>
     </Button>)
   );
