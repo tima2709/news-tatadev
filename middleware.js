@@ -16,8 +16,6 @@ export function middleware(request) {
       maxAge: 60 * 60 * 24 * 365,
       path: '/',
     });
-
-    console.log(`Сгенерирован новый device_id: ${newDeviceId}`);
   }
 
   return response;

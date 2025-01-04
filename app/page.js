@@ -8,7 +8,7 @@ import React from "react";
 import {getMetaTags} from "@/lib/fetchData";
 
 export async function generateMetadata() {
-    const data = await getMetaTags('/')
+    const data = await getMetaTags('home');
     return {
         title: data.title || "Чуйские известия - Главные новости и события",
         description:data.description || "Ежедневные новости, политики, экономики, общества, спорта и культуры. Актуальная информация и аналитика.",
@@ -18,14 +18,14 @@ export async function generateMetadata() {
             description: data.description || "Project Meta Description",
             url: data?.url_path || "https://news.tatadev.dev/",
             type: "website",
-            images: [{ url: data.image || "/logo-image.png" }],
+            images: [{ url: data.image || "/logo-image.svg" }],
         },
         verification: {
             google: "string",
             yandex: "string",
         },
         icons: {
-            icon: "/favicon.ico",
+            icon: data.image || "/logo-image.svg",
         },
         authors: {
             name: "TataDev Team",

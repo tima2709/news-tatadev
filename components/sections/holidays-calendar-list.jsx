@@ -7,6 +7,7 @@ import {cn} from "@/lib/utils";
 import {getHolidays} from "@/lib/fetchData";
 import {format} from "date-fns";
 import {ru} from "date-fns/locale";
+import Image from "next/image";
 
 const HolidaysCalendarList = ({className}) => {
     const month = format(new Date(), 'MM');
@@ -53,9 +54,13 @@ const HolidaysCalendarList = ({className}) => {
                     </CarouselItem>
                 </CarouselContent>
                 <CarouselNext disabled={currentDate === '12'} className="top-3 right-0 bg-white shadow-none"
-                              onClick={handleNext}/>
+                              onClick={handleNext}>
+                    <Image src={"/ic_arrow-right-gray.svg"} alt={"icon right"} width={24} height={24}/>
+                </CarouselNext>
                 <CarouselPrevious disabled={currentDate === '1'} className="top-3 left-0 bg-white shadow-none"
-                                  onClick={handlePrevious}/>
+                                  onClick={handlePrevious}>
+                    <Image src={"/ic_arrow-left-gray.svg"} alt={"icon left"} width={24} height={24}/>
+                </CarouselPrevious>
             </Carousel>
         </div>
     );

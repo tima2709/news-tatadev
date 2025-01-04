@@ -15,14 +15,14 @@ export async function generateMetadata() {
             description: data.description || "Project Meta Description",
             url: data?.url_path || "https://news.tatadev.dev/",
             type: "website",
-            images: [{ url: data.image || "/logo-image.png" }],
+            images: [{ url: data.image || "/logo-with-name.svg" }],
         },
         verification: {
             google: "string",
             yandex: "string",
         },
         icons: {
-            icon: "/favicon.ico",
+            icon: data.image || "/logo-image.svg",
         },
         authors: {
             name: "TataDev Team",

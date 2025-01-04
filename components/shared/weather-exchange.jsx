@@ -11,7 +11,7 @@ const WeatherExchange = async ({className}) => {
 
     return (
         <div className={cn(className)}>
-            <div className="flex items-center gap-2 mr-6 lx:mb-0 lg:mb-2 mb-0 ">
+            <div className="flex items-center gap-2 mr-6 lx:mb-0 md:mb-2 mb-0 ">
                 <Image src="/sun.svg" alt="sun icon" width={22} height={22}/>
                 <p className="text-[#101828] font-medium">
                     {weather?.current_weather?.temperature} {weather?.current_weather_units?.temperature} в Бишкеке

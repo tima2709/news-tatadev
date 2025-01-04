@@ -9,6 +9,7 @@ import {getOneNews, getSimilarNewsList} from "@/lib/fetchData";
 import {processContent} from '@/lib/utils';
 import Link from "next/link"
 import {format} from "date-fns";
+import ShareSocialMedia from "@/components/shared/share-social-media";
 
 
 const Page = async ({params}) => {
@@ -19,7 +20,7 @@ const Page = async ({params}) => {
     const content = processContent(news?.content);
 
     return (
-        <Container className="lg:flex block gap-6 py-6 mb-10 mt-6 md:bg-transparent bg-white">
+        <Container className="lg:flex block gap-6 py-6 mb-10 md:bg-transparent bg-white">
             <div className="flex-1">
                 <div className="md:p-6 md:border md:border-[#E0EBFF] bg-white rounded-lg mb-6">
                     <div className="flex items-center justify-between mb-5">
@@ -33,18 +34,23 @@ const Page = async ({params}) => {
                     {news.media && <DetailNewsImgCarousel images={news?.media}/>}
                     <div
                         dangerouslySetInnerHTML={{__html: content}}
-                        className="ck-content"
+                        className="ck-content mb-5 "
                     ></div>
-                    <Link href={`/search?author=${news?.author?.slug}&page=1`}>{news?.author?.full_name}</Link>
+                    <div className="my-5">
+                        <Link href={`/search?author=${news?.author?.slug}&page=1`}><span className="text-xs font-normal text-[#1757B9]">Автор: {news?.author?.full_name}</span></Link>
+                    </div>
                     <div className="flex flex-wrap items-center gap-2 mt-5 mb-6">
                         {news?.tags?.map((tag) => (
-                            <Link key={tag.slug} href={`search?tags=${tag.slug}&page=1`} className="mb-2">
+                            <Link key={tag.slug} href={`/search?tags=${tag.slug}&page=1`} className="mb-2">
                                 <span
                                     className="py-2 px-4 border border-[#D1E2FF] rounded-full font-semibold text-xs text-[#101828]">{tag.name}</span>
                             </Link>
                         ))}
                     </div>
-                    <EmojiReactions slug={news.slug} reactions={news?.reactions}/>
+                    <div className="md:flex flex-wrap block items-center justify-between">
+                        <EmojiReactions slug={news.slug} reactions={news?.reactions}/>
+                        <ShareSocialMedia news={news}/>
+                    </div>
                 </div>
                 <AddComments slug={news.slug}/>
             </div>

@@ -6,7 +6,7 @@ import {cn} from '@/lib/utils';
 import {Button} from '@/components/ui/button';
 import {useRouter} from "next/navigation";
 
-const SearchInput = ({className, handleClose}) => {
+const SearchInput = ({className, handleClose, inputRef}) => {
 
     const [search, setSearch] = useState('')
 
@@ -34,10 +34,11 @@ const SearchInput = ({className, handleClose}) => {
             <input
                 type="text"
                 value={search}
+                ref={inputRef}
                 onChange={(e) => setSearch(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Поиск по сайту"
-                className="w-full px-4 py-4 pr-12 border border-[#E0EBFF] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#D1E2FF]"
+                className="w-full px-4 py-4 pr-12 border border-[#E0EBFF] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D1E2FF]"
             />
 
             {search.length

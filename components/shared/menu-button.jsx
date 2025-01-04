@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
     Drawer,
     DrawerClose,
@@ -18,10 +18,13 @@ import {getRubrics} from "@/lib/fetchData";
 import Link from "next/link";
 import {useMediaQuery} from "react-responsive";
 
-const MenuButton = ({children}) => {
+const MenuButton = ({children, focusSearch = false}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [rubrics, setRubrics] = useState([]);
+    const [focus, setFocus] = useState(false)
+
     const isTablet = useMediaQuery({ maxWidth: 768 });
+    const inputRef = useRef(null);
 
     useEffect(() => {
         const fetchRubrics = async () => {
@@ -31,6 +34,16 @@ const MenuButton = ({children}) => {
 
         fetchRubrics();
     }, []);
+
+    const handleFocusSearch = () => {
+        setFocus(!focus)
+    }
+
+    if (focusSearch || focus) {
+        setTimeout(() => {
+            inputRef.current?.focus();
+        }, 0);
+    }
 
     const handleClose = () => {
         setIsOpen(false);
@@ -55,7 +68,7 @@ const MenuButton = ({children}) => {
                         <nav className=" flex md:flex-col flex-col-reverse md:py-9 py-0">
                             <div className="flex items-start justify-between">
                                 <ul className="list-none md:flex md:flex-wrap block gap-10 md:mr-5 overflow-auto">
-                                    {rubrics.map((item) => (
+                                    {rubrics?.map((item) => (
                                         <Link href={`/search?rubric=${item.slug}&page=1`} key={item.slug} onClick={handleClose}>
                                             <li className={`md:text-base text-left text-xl md:mb-0 mb-5 text-[#101828] font-medium hover:text-[#1757B9] cursor-pointer`}>
                                                 {item.title}
@@ -64,7 +77,7 @@ const MenuButton = ({children}) => {
                                     ))}
                                 </ul>
                                 <div className="gap-4 md:flex hidden">
-                                    <Button variant="outline" className=" bg-[#E0EBFF] h-10 w-10 p-0 rounded-lg hover:bg-[#D1E2FF]">
+                                    <Button onClick={handleFocusSearch} variant="outline" className=" bg-[#E0EBFF] h-10 w-10 p-0 rounded-lg hover:bg-[#D1E2FF]">
                                         <Image
                                             src="/ic_search.svg"
                                             alt="search icon"
@@ -83,7 +96,7 @@ const MenuButton = ({children}) => {
                                 </div>
                             </div>
                             <div className="md:mt-8 mt-5 md:mb-0 mb-7">
-                                <SearchInput handleClose={handleClose}/>
+                                <SearchInput handleClose={handleClose} inputRef={inputRef}/>
                             </div>
                         </nav>
                     </DrawerTitle>

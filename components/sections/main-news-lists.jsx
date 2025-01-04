@@ -1,6 +1,4 @@
 import React from 'react';
-import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
-import NewsList from "@/components/shared/news-list";
 import TopPublicationsCard from "@/components/shared/top-publications-card";
 import {getMainNewsListData, getRandomBanner, getTopNewsData} from "@/lib/fetchData";
 import Banner from "@/components/shared/banner";
