@@ -23,7 +23,7 @@ export async function generateMetadata({params}) {
             yandex: "string",
         },
         icons: {
-            icon: "/favicon.ico",
+            icon: data.image || "/logo-image.svg",
         },
         authors: {
             name: "TataDev Team",

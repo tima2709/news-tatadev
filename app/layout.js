@@ -3,14 +3,29 @@ import "./globals.css";
 import Header from "@/components/shared/header";
 import Footer from "@/components/shared/footer";
 import {Toaster} from "@/components/ui/toaster";
+import {getMetaTags} from "@/lib/fetchData";
 
 const inter = Inter({ subsets: ["latin"] });
-
+const data = await getMetaTags('layout');
 
 export const metadata = {
-  title: "Чуйские известия",
-  description: "Актуальные новости",
-    logo: "/logo-image.png"
+    title: data?.title || "Чуйские известия",
+    description: data?.description || "Актуальные новости",
+    logo: data.image ||  "/logo-image.svg",
+    openGraph: {
+        title: data.title || "Чуйские известия",
+        description: data.description || "Актуальные новости",
+        url: data?.url_path || "https://news.tatadev.dev/",
+        type: "website",
+        images: [
+            {
+                url: data.image || "/logo-with-name.svg",
+                width: 800,
+                height: 600,
+                alt: data?.title || "Чуйские известия",
+            },
+        ],
+    },
 };
 
 export default function RootLayout({ children }) {
