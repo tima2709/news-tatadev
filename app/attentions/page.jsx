@@ -42,7 +42,7 @@ const Page = async () => {
                     <div>
                         {attentions?.results.length
                             ? attentions?.results?.map((news) => (
-                                <AttetionList pathName="attentions" key={news.slug} news={news} className="mb-6"/>
+                                <AttetionList pathName="attentions" key={news.slug} news={news} className="mb-6" title="Объявления"/>
                             ))
                             :
                             <div>

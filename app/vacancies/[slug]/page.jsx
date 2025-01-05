@@ -1,10 +1,10 @@
 import React from 'react';
 import {Container} from "@/components/shared/container";
-import {getSocialLinks, getVacanciesDataBySlug} from "@/lib/fetchData";
+import {getVacanciesDataBySlug} from "@/lib/fetchData";
 import 'ckeditor5/ckeditor5.css';
 import {format} from "date-fns";
-import Image from "next/image";
 import Link from "next/link";
+import ShareSocialMedia from "@/components/shared/share-social-media";
 
 
 const Page = async ({params}) => {
@@ -15,12 +15,10 @@ const Page = async ({params}) => {
 
     const createdDate = format(news?.created_at, "dd.MM.yyyy")
 
-    const socialLinks = await getSocialLinks();
-
     return (
         <Container className="flex gap-6 py-6 mt-6">
-            <div className="lg:w-[calc(100%-291px)]">
-                <div className="p-6 border border-[#E0EBFF] bg-white rounded-lg mb-6">
+            <div className="lg:w-[calc(100%-291px)] border border-[#E0EBFF] bg-white rounded-lg p-6">
+                <div className="mb-6">
                     <div className="flex items-center justify-between mb-5">
                         <Link href="/vacancies"><span className="text-xs font-semibold text-[#1757B9]">Вакансии</span></Link>
                         <span className="font-normal text-[#777E98] text-xs">{createdDate}</span>
@@ -33,14 +31,8 @@ const Page = async ({params}) => {
                         className="ck-content"
                     ></div>
                 </div>
-                <div className="flex ">
-                    {
-                        socialLinks.map((link) => (
-                            <Link href={link.link} key={link.name}>
-                                <Image src={link.icon} alt={link.name} width={32} height={32}/>
-                            </Link>
-                        ))
-                    }
+                <div className="flex justify-end">
+                    <ShareSocialMedia news={news} pageEndpoint="/vacancies/"/>
                 </div>
             </div>
         </Container>
