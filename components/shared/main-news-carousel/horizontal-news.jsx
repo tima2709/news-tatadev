@@ -1,22 +1,16 @@
-'use client'
-
 import React from 'react';
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
 import NewsList from "@/components/shared/news-list";
-import {useMediaQuery} from "react-responsive";
 
-const MainNewsCarousel = ({mainNewsList}) => {
-
-    const isTablet = useMediaQuery({ maxWidth: 768 });
-
+const HorizontalNews = ({mainNewsList}) => {
     return (
         <Carousel
             opts={{
                 align: "start",
             }}
-            orientation={isTablet ? "horizontal" : "vertical"}
+            orientation={"horizontal"}
         >
-            <CarouselContent className="lg:max-h-[1080px] md:max-h-[1080px] max-h-auto sm:w-auto w-[287px]">
+            <CarouselContent className="sm:w-auto w-[290px]">
                 {mainNewsList.map((news) => (
                     <CarouselItem key={news.slug} className="sm:basis-1/2">
                         <div className="md:p-0 pt-1">
@@ -25,10 +19,10 @@ const MainNewsCarousel = ({mainNewsList}) => {
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselPrevious  className="md:flex hidden md:-bottom-12 -bottom-11 left-4 "/>
-            <CarouselNext  className="md:flex hidden md:-bottom-12 -bottom-11 left-14"/>
+            <CarouselPrevious className="md:flex hidden md:-bottom-12 -bottom-11 left-4 "/>
+            <CarouselNext className="md:flex hidden md:-bottom-12 -bottom-11 left-14"/>
         </Carousel>
     );
 };
 
-export default MainNewsCarousel;
+export default HorizontalNews;

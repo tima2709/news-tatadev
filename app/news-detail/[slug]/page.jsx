@@ -37,7 +37,7 @@ const Page = async ({params}) => {
                         className="ck-content mb-5 "
                     ></div>
                     <div className="my-5">
-                        <Link href={`/search?author=${news?.author?.slug}&page=1`}><span className="text-xs font-normal text-[#1757B9]">Автор: {news?.author?.full_name}</span></Link>
+                        {news?.author?.full_name && <Link href={`/search?author=${news?.author?.slug}&page=1`}><span className="text-xs font-normal text-[#1757B9]">Автор: {news?.author?.full_name}</span></Link>}
                     </div>
                     <div className="flex flex-wrap items-center gap-2 mt-5 mb-6">
                         {news?.tags?.map((tag) => (
@@ -49,7 +49,7 @@ const Page = async ({params}) => {
                     </div>
                     <div className="md:flex flex-wrap block items-center justify-between">
                         <EmojiReactions slug={news.slug} reactions={news?.reactions}/>
-                        <ShareSocialMedia news={news}/>
+                        <ShareSocialMedia news={news} pageEndpoint="/news-detail/"/>
                     </div>
                 </div>
                 <AddComments slug={news.slug}/>
