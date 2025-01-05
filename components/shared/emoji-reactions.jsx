@@ -79,7 +79,7 @@ const EmojiReactions = ({ slug, reactions }) => {
     <div className="flex flex-wrap reaction-container">
       {Object.entries(reacts).map(([emoji, data]) => (
         <div
-          className="reaction-item"
+          className={'reaction-item' + (data.isUserReaction ? ' active':'')}
           key={emoji}
           onClick={() => handleReactionClick(emoji)}
         >
