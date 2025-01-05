@@ -4,10 +4,8 @@ import React from 'react';
 import {useToast} from "@/hooks/use-toast";
 import Image from "next/image";
 
-const CopyToClipboard = ({slug, shareMedia}) => {
+const CopyToClipboard = ({ shareMedia, links}) => {
     const { toast } = useToast();
-
-    let links = process.env.NEXT_PUBLIC_URL_NEWS_DETAIL + slug
 
     const copylink = (e) => {
         navigator.clipboard.writeText(links)

@@ -2,13 +2,7 @@ import React from 'react';
 import {Container} from "@/components/shared/container";
 import SearchInput from "@/components/shared/search-input";
 import NewsList from "@/components/shared/news-list";
-import {
-    getAuthorBySlug,
-    getMetaTags,
-    getRandomBanner,
-    getRubricBySlug,
-    getSearchedData
-} from "@/lib/fetchData";
+import {getAuthorBySlug, getMetaTags, getRandomBanner, getRubricBySlug, getSearchedData} from "@/lib/fetchData";
 import Image from "next/image";
 import NewsArchive from "@/components/shared/news-archive";
 import {format} from "date-fns";
@@ -81,7 +75,11 @@ const Page = async ({searchParams}) => {
                                 ? "Результаты поиска"
                                 : keyOfQuery === "date"
                                     ? formattedDate
-                                    : rubric ? rubric?.title : `Автор: ${author?.full_name}`
+                                    : rubric
+                                        ? rubric?.title
+                                        : author
+                                            ? `Автор: ${author?.full_name}`
+                                            : ""
 
                             }
                         </h2>
@@ -104,11 +102,11 @@ const Page = async ({searchParams}) => {
                             searchData?.results?.length > 0 ? (
                                 slug === "video" ? (
                                     searchData.results.map((news) => (
-                                        <YoutubeCard key={news.slug} news={news} className="mb-6" />
+                                        <YoutubeCard key={news.slug} news={news} className="mb-6"/>
                                     ))
                                 ) : (
                                     searchData.results.map((news) => (
-                                        <NewsList key={news.slug} news={news} className="mb-6" />
+                                        <NewsList key={news.slug} news={news} className="mb-6"/>
                                     ))
                                 )
                             ) : (

@@ -4,25 +4,25 @@ import Image from 'next/image';
 import { getSocialShareMedia } from '@/lib/fetchData';
 import CopyToClipboard from '@/components/shared/copyToClipboard';
 
-const ShareSocialMedia = async ({ news }) => {
+const ShareSocialMedia = async ({ news, pageEndpoint }) => {
 
     const shareMedia = await getSocialShareMedia();
 
     const {
-        title = '',
-        preview = '',
-        tags = '',
-        cover_img = '',
-        slug = '',
-        description = ''
+        title,
+        preview,
+        tags,
+        cover_img,
+        slug,
+        description
     } = news;
 
-    const shareUrl = `${process.env.NEXT_PUBLIC_URL_NEWS_DETAIL}${slug}`;
+    const shareUrl = `${process.env.API_MEDIA_URL}${pageEndpoint}${slug}`;
 
     const socialLinks = [
         {
             network: 'telegram',
-            url: `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}&image=${encodeURIComponent(cover_img)}`,
+            url: `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}&image=${encodeURIComponent(cover_img)}&description=${encodeURIComponent(description)}`,
             icon: shareMedia[0]?.icon
         },
         {
@@ -32,7 +32,7 @@ const ShareSocialMedia = async ({ news }) => {
         },
         {
             network: 'whatsapp',
-            url: `https://api.whatsapp.com/send?text=${encodeURIComponent(title)}%20${encodeURIComponent(shareUrl)}`,
+            url: `https://api.whatsapp.com/send?text=${encodeURIComponent(title)}%20${encodeURIComponent(shareUrl)}&description=${encodeURIComponent(description)}`,
             icon: shareMedia[2]?.icon
         },
         {
@@ -46,10 +46,10 @@ const ShareSocialMedia = async ({ news }) => {
         <>
             <Head>
                 <title>{title}</title>
-                <meta name="description" content={preview} />
+                <meta name="description" content={preview || description} />
                 <meta name="keywords" content={tags} />
                 <meta property="og:title" content={title} />
-                <meta property="og:description" content={preview} />
+                <meta property="og:description" content={preview || description} />
                 <meta property="og:image" content={cover_img} />
                 <meta property="og:image:width" content="1200" />
                 <meta property="og:image:height" content="630" />
@@ -80,7 +80,7 @@ const ShareSocialMedia = async ({ news }) => {
                         </a>
                     )
                 ))}
-                <CopyToClipboard slug={slug} shareMedia={shareMedia} />
+                <CopyToClipboard slug={slug} shareMedia={shareMedia} links={shareUrl} />
             </div>
         </>
     );

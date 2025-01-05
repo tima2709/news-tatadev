@@ -5,6 +5,7 @@ import 'ckeditor5/ckeditor5.css';
 import {format} from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import ShareSocialMedia from "@/components/shared/share-social-media";
 
 
 const Page = async ({params}) => {
@@ -17,8 +18,8 @@ const Page = async ({params}) => {
 
     return (
         <Container className="flex gap-6 py-6 mt-6">
-            <div className="lg:w-[calc(100%-291px)]">
-                <div className="p-6 border border-[#E0EBFF] bg-white rounded-lg mb-6">
+            <div className="lg:w-[calc(100%-291px)] p-6 border border-[#E0EBFF] bg-white rounded-lg">
+                <div className="mb-6">
                     <div className="flex items-center justify-between mb-5">
                         <Link href="/attentions"><span className="text-xs font-semibold text-[#1757B9]">Объявления</span></Link>
                         <span className="font-normal text-[#777E98] text-xs">{createdDate}</span>
@@ -38,6 +39,9 @@ const Page = async ({params}) => {
                         dangerouslySetInnerHTML={{__html: news?.content}}
                         className="ck-content"
                     ></div>
+                </div>
+                <div className="flex justify-end">
+                    <ShareSocialMedia news={news} pageEndpoint="/attentions/"/>
                 </div>
             </div>
         </Container>
