@@ -38,6 +38,13 @@ p {
 .ck-content p {
   line-height: 22px;
   font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.ck-content .custom-br {
+  display: block;
+  margin-bottom: 8px;
 }
 
 h2 {
