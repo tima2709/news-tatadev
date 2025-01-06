@@ -6,15 +6,6 @@ import { getUrgentNewsList } from '@/lib/fetchData';
 const RunningNews = async ({className}) => {
     const urgentList = await getUrgentNewsList("6");
     const news = urgentList.map((item) => item?.title);
-    
-    // const news = [
-    //     'В Бишкеке сегодня произойдёт временное отключение питьевой воды',
-    //     'В Кыргызстане выберут участок для строительства АЭС',
-    //     'В Бишкеке четыре троллейбуса новой линии будут обслуживать маршрут №4',
-    //     'В Бишкеке сегодня произойдёт временное отключение питьевой воды',
-    //     'В Кыргызстане выберут участок для строительства АЭС',
-    //     'В Бишкеке четыре троллейбуса новой линии будут обслуживать маршрут №4',
-    // ];
 
     return (
         <div className={cn("w-full overflow-hidden bg-[#E0EBFF]", className)}>

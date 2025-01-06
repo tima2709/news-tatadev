@@ -12,8 +12,10 @@ const NewsCard = ({rubric}) => {
             className="my-6"
             key={rubric.slug}
         >
-            <Link href={`/search/?rubric=${rubric.slug}&page=1`}><h2
-                className="mb-6 hover:text-[#1757B9] duration-200 md:text-[26px] text-[22px]">{rubric?.name}</h2></Link>
+            <h2
+                className="mb-6 md:text-[26px] text-[22px]">
+                <Link href={`/search/?rubric=${rubric.slug}&page=1`}><span className="hover:text-[#1757B9] duration-200">{rubric?.name}</span></Link>
+            </h2>
             <CarouselContent className="sm:w-auto w-[287px]">
                 {rubric.news.map((news) => (
                     <CarouselItem key={news.slug} className="lg:basis-1/4 md:basis-1/3 sm:basis-1/2">
