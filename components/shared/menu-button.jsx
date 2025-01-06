@@ -64,10 +64,10 @@ const MenuButton = ({children, focusSearch = false}) => {
                     </DrawerClose>
                 </div>
                 <DrawerHeader>
-                    <DrawerTitle>
+                    <DrawerTitle></DrawerTitle>
                         <nav className=" flex md:flex-col flex-col-reverse md:py-9 py-0">
-                            <div className="flex items-start justify-between">
-                                <ul className="list-none md:flex md:flex-wrap block gap-10 md:mr-5 overflow-auto">
+                            <div className="flex items-start justify-between md:h-auto h-[75vh] overflow-scroll ">
+                                <ul className="list-none md:flex md:flex-wrap block gap-10 md:mr-5">
                                     {rubrics?.map((item) => (
                                         <Link href={`/search?rubric=${item.slug}&page=1`} key={item.slug} onClick={handleClose}>
                                             <li className={`md:text-base text-left text-xl md:mb-0 mb-5 text-[#101828] font-medium hover:text-[#1757B9] cursor-pointer`}>
@@ -99,7 +99,6 @@ const MenuButton = ({children, focusSearch = false}) => {
                                 <SearchInput handleClose={handleClose} inputRef={inputRef}/>
                             </div>
                         </nav>
-                    </DrawerTitle>
                     <DrawerDescription></DrawerDescription>
                 </DrawerHeader>
                 <DrawerFooter></DrawerFooter>

@@ -15,7 +15,7 @@ const YoutubeCard = ({news, className}) => {
                     referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
                 </iframe>
             </div>
-            <h3 className="mt-4 text-[#101828]">{news.title}</h3>
+            <h3 className="mt-4 text-[#101828] cursor-default select-none">{news.title}</h3>
         </div>
     );
 };
