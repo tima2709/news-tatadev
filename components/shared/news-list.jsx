@@ -13,7 +13,7 @@ const NewsList = ({news, className}) => {
             <div
                 className={cn("group md:flex rounded-[8px] md:h-[163px] border border-[#E0EBFF] overflow-hidden bg-white", className)}>
                 <div className="w-auto md:w-[32%] md:h-[163px] h-[237px]">
-                    <Image src={news.cover_img} alt={"img"} width={267} height={163}
+                    <Image src={news.cover_img || "/youtube.svg"} alt={"img"} width={267} height={163}
                            className="group-hover:opacity-90 duration-200 cursor-pointer object-cover lg:rounded-l-[8px] h-full w-full "/>
                 </div>
                 <div className="w-auto md:w-[68%] p-4">
