@@ -181,6 +181,10 @@ main {
   transform: scale(0.9); /* Slightly shrink on click */
 }
 
+.reaction-item.active {
+  background-color: #b4e0dc;
+}
+
 .emoji {
   font-size: 20px; /* Slightly larger for better visibility */
   transition: transform 0.2s ease;
