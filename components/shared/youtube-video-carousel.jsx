@@ -16,7 +16,7 @@ const YoutubeVideoCarousel = ({rubric}) => {
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselPrevious className="top-5 right-12 md:flex hidden"/>
+            <CarouselPrevious className="top-5 right-10 md:flex hidden"/>
             <CarouselNext className="top-5 right-0 md:flex hidden"/>
         </Carousel>
     );

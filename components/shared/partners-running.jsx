@@ -9,7 +9,7 @@ const PartnersRunning = async () => {
 
     return (
         <div className="pb-12">
-            <h2 className="mb-6 xl:px-[150px] lg:px-20 md:px-12 px-5">{partnerTitle?.partners_title}</h2>
+            <h2 className="mb-6 max-w-[1440px] m-auto xl:px-[150px] lg:px-20 md:px-12 px-5 cursor-default select-none">{partnerTitle?.partners_title}</h2>
             <div className={"w-full overflow-hidden bg-[#E0EBFF] py-[21px]"}>
                 <div className="flex gap-6 animate-[ticker_20s_linear_infinite]">
                     {Array.from({ length: partners?.length < 10 ? 10 : partners.length }).map((_, index) => (
