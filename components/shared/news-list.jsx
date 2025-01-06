@@ -18,7 +18,7 @@ const NewsList = ({news, className}) => {
                 </div>
                 <div className="w-auto md:w-[68%] p-4">
                     <div className="flex justify-between items-center mb-2">
-                        <span className="text-[#1757B9] font-semibold text-base">{news?.rubric?.title}</span>
+                        <span className="text-[#1757B9] font-semibold text-xs">{news?.rubric?.title}</span>
                         <span className="font-normal text-xs text-[#777E98]">{createdDate}</span>
                     </div>
 

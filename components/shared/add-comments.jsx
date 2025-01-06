@@ -79,7 +79,7 @@ const AddComments = ({ slug }) => {
     };
 
     return (
-        <div className={cn("p-6 md:border border-[#E0EBFF] bg-white rounded-lg")}>
+        <div className={cn("md:p-6 md:border border-[#E0EBFF] bg-white rounded-lg")}>
             <h3 className="mb-4">Комментарии</h3>
 
             <div>
