@@ -16,7 +16,7 @@ const CopyToClipboard = ({ shareMedia, links}) => {
 
     return (
         <button onClick={copylink} className="bg-transparent border-none" >
-            <Image src={shareMedia[4].icon} alt={shareMedia[4].network} width={32} height={32}/>
+            <Image src={shareMedia[4].icon} alt={shareMedia[4].network} width={36} height={36}/>
         </button>
     );
 };

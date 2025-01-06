@@ -9,7 +9,7 @@ const NewsCard = ({rubric}) => {
             opts={{
                 align: "start",
             }}
-            className="my-6"
+            className="my-12"
             key={rubric.slug}
         >
             <h2
@@ -18,7 +18,7 @@ const NewsCard = ({rubric}) => {
             </h2>
             <CarouselContent className="sm:w-auto w-[287px]">
                 {rubric.news.map((news) => (
-                    <CarouselItem key={news.slug} className="lg:basis-1/4 md:basis-1/3 sm:basis-1/2">
+                    <CarouselItem key={news.slug} className="lx:basis-1/4 md:basis-1/3 sm:basis-1/2">
                         <Link href={`/news-detail/${news.slug}`}>
                             <div
                                 className="group flex flex-col min-w-[165px] min-h-[288px] h-full rounded-xl border border-[#E0EBFF] overflow-hidden bg-white cursor-pointer">

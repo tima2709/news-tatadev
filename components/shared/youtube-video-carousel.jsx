@@ -5,7 +5,7 @@ import YoutubeCard from "@/components/shared/youtube-card";
 
 const YoutubeVideoCarousel = ({rubric}) => {
     return (
-        <Carousel>
+        <Carousel className="my-12">
             <h2 className="mb-6 md:text-[26px] text-[22px]">
                 <Link href={`/search/?rubric=${rubric.slug}&page=1`}><span className="hover:text-[#1757B9] duration-200">{rubric?.name}</span></Link>
             </h2>

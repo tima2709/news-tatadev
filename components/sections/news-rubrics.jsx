@@ -12,7 +12,7 @@ const NewsRubrics = async () => {
     const bannerImg = await getRandomBanner();
 
     return (
-        <section className="flex lm:mt-16 mt-12 gap-6">
+        <section className="flex lg:mt-16 lm:mt-12 gap-6">
             <AllRubricsNews rubrics={rubrics}/>
             <div className="lg:block hidden w-[267px] flex-shrink-0">
                 <HolidaysCalendarList className="mb-5 mt-20 w-[267px]"/>
