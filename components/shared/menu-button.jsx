@@ -52,21 +52,22 @@ const MenuButton = ({children, focusSearch = false}) => {
     return (
         <Drawer direction={!isTablet ? "top" : "right"} open={isOpen} onOpenChange={setIsOpen}>
             <DrawerTrigger className="bg-[#E0EBFF] p-2 rounded-lg hover:bg-[#D1E2FF]">{children}</DrawerTrigger>
-            <DrawerContent className="xl:px-[150px] lg:px-20 md:px-12 p-5 rounded-none md:h-auto h-full">
-                <div className="flex justify-end">
-                    <DrawerClose className="md:hidden block bg-[#E0EBFF] flex items-center justify-center h-10 w-10 rounded-lg hover:bg-[#D1E2FF]">
-                        <Image
-                            src="/ic_x-blue.svg"
-                            alt="close icon"
-                            width={24}
-                            height={24}
-                        />
-                    </DrawerClose>
-                </div>
-                <DrawerHeader>
-                    <DrawerTitle></DrawerTitle>
-                        <nav className=" flex md:flex-col flex-col-reverse md:py-9 py-0">
-                            <div className="flex items-start justify-between md:h-auto h-[70vh] md:overflow-auto overflow-y-scroll ">
+            <DrawerContent className="bg-white rounded-none">
+                <div className="max-w-[1440px] mx-auto xl:px-[150px] lg:px-20 md:px-12 px-5 pt-6 md:pb-9 pb-5 md:h-auto h-full">
+                    <div className="flex justify-end">
+                        <DrawerClose className="md:hidden block bg-[#E0EBFF] flex items-center justify-center h-10 w-10 rounded-lg hover:bg-[#D1E2FF]">
+                            <Image
+                                src="/ic_x-blue.svg"
+                                alt="close icon"
+                                width={24}
+                                height={24}
+                            />
+                        </DrawerClose>
+                    </div>
+                    <DrawerHeader>
+                        <DrawerTitle></DrawerTitle>
+                        <nav className="flex md:flex-col flex-col-reverse">
+                            <div className="flex items-start justify-between md:h-auto h-[70vh] md:overflow-y-auto overflow-y-scroll ">
                                 <ul className="list-none md:flex md:flex-wrap block gap-10 md:mr-5">
                                     {rubrics?.map((item) => (
                                         <Link href={`/search?rubric=${item.slug}&page=1`} key={item.slug} onClick={handleClose}>
@@ -95,13 +96,14 @@ const MenuButton = ({children, focusSearch = false}) => {
                                     </DrawerClose>
                                 </div>
                             </div>
-                            <div className="md:mt-8 mt-5 md:mb-0 mb-7">
+                            <div className="md:mt-8 mt-5">
                                 <SearchInput handleClose={handleClose} inputRef={inputRef}/>
                             </div>
                         </nav>
-                    <DrawerDescription></DrawerDescription>
-                </DrawerHeader>
-                <DrawerFooter></DrawerFooter>
+                        <DrawerDescription></DrawerDescription>
+                    </DrawerHeader>
+                    <DrawerFooter></DrawerFooter>
+                </div>
             </DrawerContent>
         </Drawer>
     );

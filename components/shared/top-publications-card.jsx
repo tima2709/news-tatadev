@@ -18,12 +18,10 @@ const TopPublicationsCard = async ({className, newsList}) => {
                                 height={110}
                                 className="group-hover:opacity-90 object-cover rounded-[8px] mb-2 lg:block hidden h-[110px] w-[180px]"
                             />
-
-                            <p className="flex items-center gap-2 text-[#101828] lg:w-[180px] text-xs font-normal group-hover:text-[#1757B9] duration-200">
-                                <span className="lg:hidden block w-2.5 h-2.5 bg-[#D1E2FF] rounded-full"></span>
+                            <p className="flex items-baseline gap-2 text-[#101828] lg:w-[180px] text-xs font-normal group-hover:text-[#1757B9] duration-200">
+                                <span className="lg:hidden shrink-0 block w-2.5 h-2.5 bg-[#D1E2FF] rounded-full"></span>
                                 {news?.title}
                             </p>
-
                         </div>
                     </Link>
                 ))
