@@ -6,7 +6,7 @@ import {Toaster} from "@/components/ui/toaster";
 import {getMetaTags} from "@/lib/fetchData";
 
 const inter = Inter({ subsets: ["latin"] });
-const data = await getMetaTags('layout');
+const data = await getMetaTags('home');
 
 export const metadata = {
     title: data?.title || "Чуйские известия",

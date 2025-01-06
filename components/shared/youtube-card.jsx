@@ -4,7 +4,7 @@ import {cn} from "@/lib/utils";
 const YoutubeCard = ({news, className}) => {
     return (
         <div className={cn(className)}>
-            <div className={cn("md:rounded-[28px] rounded-[11px] overflow-hidden")}>
+            <div className={"md:rounded-[28px] rounded-[11px] overflow-hidden"}>
                 <iframe
                     height="100%"
                     width="100%"

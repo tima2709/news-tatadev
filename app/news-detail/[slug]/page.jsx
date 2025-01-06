@@ -5,11 +5,41 @@ import TopPublicationsCard from "@/components/shared/top-publications-card";
 import DetailNewsImgCarousel from "@/components/shared/detail-news-img-carousel";
 import AddComments from "@/components/shared/add-comments";
 import EmojiReactions from '@/components/shared/emoji-reactions';
-import {getOneNews, getSimilarNewsList} from "@/lib/fetchData";
+import {getMetaTags, getOneNews, getSimilarNewsList} from "@/lib/fetchData";
 import {processContent} from '@/lib/utils';
 import Link from "next/link"
 import {format} from "date-fns";
 import ShareSocialMedia from "@/components/shared/share-social-media";
+
+
+export async function generateMetadata({params}) {
+    const {slug} = await params;
+
+    const data = await getMetaTags(`/news-detail/${slug}`);
+
+    return {
+        title: data.title || "Чуйские известия - Главные новости и события",
+        description:data.description || "Ежедневные новости, политики, экономики, общества, спорта и культуры. Актуальная информация и аналитика.",
+        keywords: data.keywords || "новости, Чуйские известия, политика, экономика, общество, происшествия",
+        openGraph: {
+            title: data.title || "Project Meta Title",
+            description: data.description || "Project Meta Description",
+            url: `https://news.tatadev.dev${data?.url_path}` || "https://news.tatadev.dev",
+            type: "website",
+            images: [{ url: data.image || "/logo-with-name.svg" }],
+        },
+        verification: {
+            google: "string",
+            yandex: "string",
+        },
+        icons: {
+            icon: data.image || "/logo-with-name.svg",
+        },
+        authors: {
+            name: "TataDev Team",
+        },
+    }
+}
 
 
 const Page = async ({params}) => {
@@ -48,7 +78,7 @@ const Page = async ({params}) => {
                         ))}
                     </div>
                     <div className="md:flex flex-wrap block items-center justify-between">
-                        <EmojiReactions slug={news.slug} reactions={news?.reactions}/>
+                        <EmojiReactions slug={slug} reactions={news?.reactions}/>
                         <ShareSocialMedia news={news} pageEndpoint="/news-detail/"/>
                     </div>
                 </div>
