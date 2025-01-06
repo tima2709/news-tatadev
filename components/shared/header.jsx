@@ -13,8 +13,8 @@ const Header = async () => {
     return (
         <header
             className="lm:static fixed lm:border-none border-b border-[#E0EBFF] bg-white z-10 w-full top-0 xl:block flex flex-row-reverse justify-between lm:max-w-[1440px] mx-auto xl:py-4 xl:px-[150px]  lg:px-20 md:px-12 p-5">
-            <div className="bg-white lm:fixed z-10 top-0 right-0 left-0">
-                <nav className="max-w-[1440px] m-auto xl:px-[150px] lg:px-20 lm:px-12 lm:py-4 lm:border-b bg-white border-[#E0EBFF] flex items-center justify-between gap-4 ">
+            <div className="lm:fixed lm:border-b bg-white border-[#E0EBFF] z-10 top-0 right-0 left-0">
+                <nav className="max-w-[1440px] m-auto xl:px-[150px] lg:px-20 lm:px-12 lm:py-4 bg-white flex items-center justify-between gap-4 ">
                     <ul className="lm:flex hidden list-none justify-between items-center max-w-[1000px] w-full">
                         {rubrics.slice(0,8).map((item) => (
                             <Link href={`/search?rubric=${item.slug}&page=1`} key={item.slug}><li className="font-medium text-base hover:text-[#1757B9] duration-200">{item.title}</li></Link>
