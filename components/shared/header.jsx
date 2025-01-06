@@ -13,33 +13,35 @@ const Header = async () => {
     return (
         <header
             className="lm:static fixed lm:border-none border-b border-[#E0EBFF] bg-white z-10 w-full top-0 xl:block flex flex-row-reverse justify-between lm:max-w-[1440px] mx-auto xl:py-4 xl:px-[150px]  lg:px-20 md:px-12 p-5">
-            <nav className="lm:fixed z-10 top-0 right-0 left-0 xl:px-[150px] lg:px-20 lm:px-12 lm:py-4 lm:border-b bg-white border-[#E0EBFF] flex items-center justify-between gap-4 ">
-                <ul className="lm:flex hidden list-none justify-between items-center max-w-[1000px] w-full">
-                    {rubrics.slice(0,8).map((item) => (
-                        <Link href={`/search?rubric=${item.slug}&page=1`} key={item.slug}><li className="font-medium text-base hover:text-[#1757B9] duration-200">{item.title}</li></Link>
-                    ))}
-                </ul>
-                <div className="flex md:gap-4 gap-2">
-                    <MenuButton focusSearch={true}>
-                        <Image
-                            src="/ic_search.svg"
-                            alt="search icon"
-                            width={24}
-                            height={24}
-                        />
-                    </MenuButton>
-                    <>
-                        <MenuButton>
+            <div className="bg-white lm:fixed z-10 top-0 right-0 left-0">
+                <nav className="max-w-[1440px] m-auto xl:px-[150px] lg:px-20 lm:px-12 lm:py-4 lm:border-b bg-white border-[#E0EBFF] flex items-center justify-between gap-4 ">
+                    <ul className="lm:flex hidden list-none justify-between items-center max-w-[1000px] w-full">
+                        {rubrics.slice(0,8).map((item) => (
+                            <Link href={`/search?rubric=${item.slug}&page=1`} key={item.slug}><li className="font-medium text-base hover:text-[#1757B9] duration-200">{item.title}</li></Link>
+                        ))}
+                    </ul>
+                    <div className="flex md:gap-4 gap-2">
+                        <MenuButton focusSearch={true}>
                             <Image
-                                src="/ic_menu.svg"
-                                alt="menu icon"
+                                src="/ic_search.svg"
+                                alt="search icon"
                                 width={24}
                                 height={24}
                             />
                         </MenuButton>
-                    </>
-                </div>
-            </nav>
+                        <>
+                            <MenuButton>
+                                <Image
+                                    src="/ic_menu.svg"
+                                    alt="menu icon"
+                                    width={24}
+                                    height={24}
+                                />
+                            </MenuButton>
+                        </>
+                    </div>
+                </nav>
+            </div>
             <div className="flex items-center w-full justify-between xl:gap-0 lg:gap-5 gap-14 xl:py-4 lm:mt-[72px] ">
                     <Link href="/">
                         <div className="flex items-center md:gap-5 gap-[10px]">
