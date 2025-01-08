@@ -4,7 +4,7 @@ import React from 'react';
 import {useToast} from "@/hooks/use-toast";
 import Image from "next/image";
 
-const CopyToClipboard = ({ shareMedia, links}) => {
+const CopyToClipboard = ({ network, icon, links}) => {
     const { toast } = useToast();
 
     const copylink = (e) => {
@@ -16,7 +16,7 @@ const CopyToClipboard = ({ shareMedia, links}) => {
 
     return (
         <button onClick={copylink} className="bg-transparent border-none" >
-            <Image src={shareMedia[4].icon} alt={shareMedia[4].network} width={36} height={36}/>
+            <Image src={icon} alt={network} width={36} height={36}/>
         </button>
     );
 };
