@@ -53,7 +53,7 @@ const ShareSocialMedia = async ({ news, pageEndpoint }) => {
                     switch (shareItem?.network) {
                         case "copy":
                             return (
-                                <CopyToClipboard network={shareItem?.network} icon={shareItem?.icon} links={shareURL} />
+                                <CopyToClipboard key={shareItem?.network} network={shareItem?.network} icon={shareItem?.icon} links={shareURL.toString()} />
                             );
                         default:
                             const resourceURL = buildShareResourceURL(shareItem?.network, {shareURL, title, description, image});
