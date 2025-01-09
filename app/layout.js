@@ -11,15 +11,15 @@ const data = await getMetaTags('home');
 export const metadata = {
     title: data?.title || "Чуйские известия",
     description: data?.description || "Актуальные новости",
-    logo: data.image ||  "/logo-image.svg",
+    logo: data?.image ||  "/logo-image.svg",
     openGraph: {
-        title: data.title || "Чуйские известия",
-        description: data.description || "Актуальные новости",
+        title: data?.title || "Чуйские известия",
+        description: data?.description || "Актуальные новости",
         url: data?.url_path || "https://news.tatadev.dev/",
         type: "website",
         images: [
             {
-                url: data.image || "/logo-with-name.svg",
+                url: data?.image || "/logo-with-name.svg",
                 width: 800,
                 height: 600,
                 alt: data?.title || "Чуйские известия",

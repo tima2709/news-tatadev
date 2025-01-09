@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns: [
           {
             protocol: 'https',
-            hostname: 'news.tatadev.dev',
+            hostname: 'chuiskieizvestia.kg',
             pathname: '/media/**',
           },
         ],

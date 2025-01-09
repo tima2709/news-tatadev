@@ -1,19 +1,20 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
-import {Calendar} from "@/components/ui/calendar";
-import {cn} from "@/lib/utils";
-import {format} from "date-fns";
-import {useRouter} from "next/navigation";
-import {getDateNews} from "@/lib/fetchData";
-import {ru} from "date-fns/locale/ru";
+import React, { useEffect, useState } from 'react';
+import { Calendar } from "@/components/ui/calendar";
+import { cn } from "@/lib/utils";
+import { format, startOfMonth } from "date-fns";
+import {useRouter, useSearchParams} from "next/navigation";
+import { getDateNews } from "@/lib/fetchData";
+import { ru } from "date-fns/locale/ru";
 
-const NewsArchive = ({className, page}) => {
-    const [date, setDate] = useState(new Date());
-    const [contentDates, setContentDates] = useState([]);
+const NewsArchive = ({ className, page }) => {
     const router = useRouter();
 
-    let todayDay = format(new Date(), "yyyy-MM-dd");
+    const [date, setDate] = useState(new Date());
+    const [contentDates, setContentDates] = useState([]);
+
+    let todayDay = format(new Date(date), "yyyy-MM-dd");
 
     useEffect(() => {
         const fetchDate = async () => {
@@ -21,14 +22,19 @@ const NewsArchive = ({className, page}) => {
             setContentDates(data);
         };
         fetchDate();
-    }, []);
+    }, [todayDay]);
 
     const datesWithContent = contentDates?.map(item => new Date(item.date));
 
     const handleSearchData = (selectedDate) => {
-        setDate(selectedDate)
+        setDate(selectedDate);
         const createdDate = format(selectedDate, "yyyy-MM-dd");
         router.push(`/${page}?date=${createdDate}`);
+    };
+
+    const handleMonthChange = (newDate) => {
+        const monthStart = startOfMonth(newDate);
+        setDate(monthStart);
     };
 
     const hasContent = (date) => {
@@ -46,23 +52,24 @@ const NewsArchive = ({className, page}) => {
                 mode="single"
                 selected={date}
                 onSelect={handleSearchData}
+                onMonthChange={handleMonthChange}
                 locale={ru}
                 disabled={(date) =>
                     date > new Date() || date < new Date("1991-01-01")
                 }
                 className="p-0"
-                modifiers={{hasContent: hasContent}}
+                modifiers={{ hasContent: hasContent }}
                 modifiersStyles={{
                     hasContent: {
                         position: 'relative'
                     }
                 }}
                 components={{
-                    DayContent: ({date}) => (
+                    DayContent: ({ date }) => (
                         <div className="relative w-full h-full flex items-center justify-center">
                             {date.getDate()}
                             {hasContent(date) && (
-                                <div className="absolute bottom-1 w-1 h-1 bg-current rounded-full"/>
+                                <div className="absolute bottom-1 w-1 h-1 bg-current rounded-full" />
                             )}
                         </div>
                     )

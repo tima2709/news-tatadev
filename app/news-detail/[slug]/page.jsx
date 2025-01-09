@@ -50,9 +50,9 @@ const Page = async ({params}) => {
     const content = processContent(news?.content);
 
     return (
-        <Container className="lg:flex block gap-6 py-6 mb-10 md:bg-transparent bg-white">
+        <Container className="lg:flex block gap-6 pt-6 pb-10 md:bg-transparent bg-white">
             <div className="flex-1">
-                <div className="md:p-6 md:border md:border-[#E0EBFF] bg-white rounded-lg mb-6">
+                <div className="md:p-6 md:border md:border-[#E0EBFF] bg-white rounded-lg md:mb-6 mb-10">
                     <div className="flex items-center justify-between mb-5">
                         <Link href={`/search?rubric=${news.rubric?.slug}&page=1`}><span
                             className="font-bold text-[#1757B9] text-sm">{news.rubric?.title}</span></Link>

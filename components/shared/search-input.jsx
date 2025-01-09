@@ -8,7 +8,7 @@ import {useRouter} from "next/navigation";
 
 const SearchInput = ({className, handleClose, inputRef}) => {
 
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState('');
 
     const router = useRouter();
 
@@ -21,7 +21,7 @@ const SearchInput = ({className, handleClose, inputRef}) => {
     const handleSearchData = () => {
         if (search.trim()) {
             router.push(`/search?search=${search}&page=1`);
-            handleClose()
+            handleClose();
         }
     };
 
