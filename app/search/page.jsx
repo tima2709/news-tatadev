@@ -18,31 +18,37 @@ import Banner from "@/components/shared/banner";
 import SearchPagination from "@/components/shared/search-pagination";
 import {getQueryString} from "@/lib/getQueryString";
 import YoutubeCard from "@/components/shared/youtube-card";
+import {headers} from "next/headers";
 
 export async function generateMetadata() {
-    const data = await getMetaTags('search')
+    const headersList = await headers();
+    const host = headersList.get('host');
+    const protocol = headersList.get('x-forwarded-proto') || 'http';
+    const currentUrl = `${protocol}://${host}/`;
+
+    const data = await getMetaTags('home');
     return {
-        title: data.title || "Чуйские известия - Главные новости и события",
-        description: data.description || "Ежедневные новости, политики, экономики, общества, спорта и культуры. Актуальная информация и аналитика.",
-        keywords: data.keywords || "новости, Чуйские известия, политика, экономика, общество, происшествия",
+        title: data?.title || "Чуйские известия - Главные новости и события",
+        description: data?.description || "Ежедневные новости, политики, экономики, общества, спорта и культуры. Актуальная информация и аналитика.",
+        keywords: data?.keywords || "новости, Чуйские известия, политика, экономика, общество, происшествия",
         openGraph: {
-            title: data.title || "Project Meta Title",
-            description: data.description || "Project Meta Description",
-            url: data?.url_path || "https://news.tatadev.dev/",
+            title: data?.title || "Project Meta Title",
+            description: data?.description || "Project Meta Description",
+            url: data?.url || currentUrl || "https://chuiskieizvestia.kg/",
             type: "website",
-            images: [{url: data.image || "/logo-image.png"}],
+            images: [{ url: data?.image || "/logo-image.svg" }],
         },
         verification: {
-            google: "string",
-            yandex: "string",
+            google: data.google || "string",
+            yandex: data.yandex || "string",
         },
         icons: {
-            icon: data.image || "/logo-image.svg",
+            icon: data?.image || "/logo-image.svg",
         },
         authors: {
             name: "TataDev Team",
         },
-    }
+    };
 }
 
 const Page = async ({searchParams}) => {
@@ -135,7 +141,7 @@ const Page = async ({searchParams}) => {
                         <div
                             className="lg:flex hidden">
                             <Banner className="h-[436px] w-[267px] mb-6 rounded-lg bg-[#E0EBFF]"
-                                    image={bannerImg?.side_picture}/>
+                                    image={bannerImg?.side_picture} link={bannerImg.link}/>
                         </div>
                 }
             </div>

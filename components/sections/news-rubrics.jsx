@@ -17,7 +17,7 @@ const NewsRubrics = async () => {
             <div className="lg:block hidden w-[267px] flex-shrink-0">
                 <HolidaysCalendarList className="mb-5 mt-20 w-[267px]"/>
                 <NewsArchive className="mb-5" page="search"/>
-                <Banner className="h-[436px] w-full mb-6" image={bannerImg?.side_picture}/>
+                <Banner className="h-[436px] w-full mb-6" image={bannerImg?.side_picture} link={bannerImg.link}/>
             </div>
         </section>
     );
