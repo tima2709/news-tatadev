@@ -6,23 +6,29 @@ import PartnersRunning from "@/components/shared/partners-running";
 import RunningNews from "@/components/shared/running-news";
 import React from "react";
 import {getMetaTags} from "@/lib/fetchData";
+import { headers } from 'next/headers'; // Импорт для получения заголовков
 
 export async function generateMetadata() {
+    const headersList = await headers();
+    const host = headersList.get('host');
+    const protocol = headersList.get('x-forwarded-proto') || 'http';
+    const currentUrl = `${protocol}://${host}/`;
+
     const data = await getMetaTags('home');
     return {
         title: data?.title || "Чуйские известия - Главные новости и события",
-        description:data?.description || "Ежедневные новости, политики, экономики, общества, спорта и культуры. Актуальная информация и аналитика.",
+        description: data?.description || "Ежедневные новости, политики, экономики, общества, спорта и культуры. Актуальная информация и аналитика.",
         keywords: data?.keywords || "новости, Чуйские известия, политика, экономика, общество, происшествия",
         openGraph: {
             title: data?.title || "Project Meta Title",
             description: data?.description || "Project Meta Description",
-            url: data?.url_path || "https://news.tatadev.dev/",
+            url: data?.url || currentUrl || "https://chuiskieizvestia.kg/",
             type: "website",
             images: [{ url: data?.image || "/logo-image.svg" }],
         },
         verification: {
-            google: "string",
-            yandex: "string",
+            google: data.google || "string",
+            yandex: data.yandex || "string",
         },
         icons: {
             icon: data?.image || "/logo-image.svg",
@@ -30,8 +36,9 @@ export async function generateMetadata() {
         authors: {
             name: "TataDev Team",
         },
-    }
+    };
 }
+
 
 export default function Home() {
     return (

@@ -15,7 +15,7 @@ export const metadata = {
     openGraph: {
         title: data?.title || "Чуйские известия",
         description: data?.description || "Актуальные новости",
-        url: data?.url_path || "https://news.tatadev.dev/",
+        url: data?.url || "https://chuiskieizvestia.kg/",
         type: "website",
         images: [
             {

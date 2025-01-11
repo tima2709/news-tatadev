@@ -1,12 +1,44 @@
 import React from 'react';
 import {Container} from "@/components/shared/container";
-import {getOneAttentionsData} from "@/lib/fetchData";
+import {getMetaTags, getOneAttentionsData} from "@/lib/fetchData";
 import 'ckeditor5/ckeditor5.css';
 import {format} from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import ShareSocialMedia from "@/components/shared/share-social-media";
+import {headers} from "next/headers";
 
+export async function generateMetadata({params}) {
+    const {slug} = await params;
+    const data = await getMetaTags(`attentions/${slug}`)
+    const headersList = await headers();
+    const host = headersList.get('host');
+    const protocol = headersList.get('x-forwarded-proto') || 'http';
+    const currentUrl = `${protocol}://${host}/attentions/${slug}`;
+
+    return {
+        title: data?.title || "Чуйские известия - Главные новости и события",
+        description: data?.description || "Ежедневные новости, политики, экономики, общества, спорта и культуры. Актуальная информация и аналитика.",
+        keywords: data?.keywords || "новости, Чуйские известия, политика, экономика, общество, происшествия",
+        openGraph: {
+            title: data?.title || "Project Meta Title",
+            description: data?.description || "Project Meta Description",
+            url: data?.url || currentUrl || `https://chuiskieizvestia.kg/attentions/${slug}`,
+            type: "website",
+            images: [{url: data?.image || "/logo-image.svg"}],
+        },
+        verification: {
+            google: data.google || "string",
+            yandex: data.yandex || "string",
+        },
+        icons: {
+            icon: data?.image || "/logo-image.svg",
+        },
+        authors: {
+            name: "TataDev Team",
+        },
+    };
+}
 
 const Page = async ({params}) => {
 

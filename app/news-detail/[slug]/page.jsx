@@ -10,35 +10,42 @@ import {processContent} from '@/lib/utils';
 import Link from "next/link"
 import {format} from "date-fns";
 import ShareSocialMedia from "@/components/shared/share-social-media";
+import {headers} from "next/headers";
+
+
+
 
 
 export async function generateMetadata({params}) {
     const {slug} = await params;
-
     const data = await getMetaTags(`/news-detail/${slug}`);
+    const headersList = await headers();
+    const host = headersList.get('host');
+    const protocol = headersList.get('x-forwarded-proto') || 'http';
+    const currentUrl = `${protocol}://${host}/news-detail/${slug}`;
 
     return {
-        title: data.title || "Чуйские известия - Главные новости и события",
-        description:data.description || "Ежедневные новости, политики, экономики, общества, спорта и культуры. Актуальная информация и аналитика.",
-        keywords: data.keywords || "новости, Чуйские известия, политика, экономика, общество, происшествия",
+        title: data?.title || "Чуйские известия - Главные новости и события",
+        description: data?.description || "Ежедневные новости, политики, экономики, общества, спорта и культуры. Актуальная информация и аналитика.",
+        keywords: data?.keywords || "новости, Чуйские известия, политика, экономика, общество, происшествия",
         openGraph: {
-            title: data.title || "Project Meta Title",
-            description: data.description || "Project Meta Description",
-            url: `https://news.tatadev.dev${data?.url_path}` || "https://news.tatadev.dev",
+            title: data?.title || "Project Meta Title",
+            description: data?.description || "Project Meta Description",
+            url: data?.url || currentUrl || `https://chuiskieizvestia.kg/news-detail/${slug}`,
             type: "website",
-            images: [{ url: data.image || "/logo-with-name.svg" }],
+            images: [{url: data?.image || "/logo-image.svg"}],
         },
         verification: {
-            google: "string",
-            yandex: "string",
+            google: data.google || "string",
+            yandex: data.yandex || "string",
         },
         icons: {
-            icon: data.image || "/logo-with-name.svg",
+            icon: data?.image || "/logo-image.svg",
         },
         authors: {
             name: "TataDev Team",
         },
-    }
+    };
 }
 
 
