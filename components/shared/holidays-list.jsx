@@ -19,10 +19,10 @@ const HolidaysList = ({holiday}) => {
     return (
         <div className="mb-4">
             <h5 className="font-medium text-sm mb-[6px]">
-                {formatDate(holiday.start_date, holiday.end_date)}
+                {formatDate(holiday?.start_date, holiday?.end_date)}
             </h5>
             {
-                holiday.names.map((el) => (
+                holiday?.names.map((el) => (
                     <p key={el} className="text-sm text-[#777E98] mb-[6px]">
                         {el}
                     </p>
