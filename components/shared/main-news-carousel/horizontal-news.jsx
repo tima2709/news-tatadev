@@ -11,7 +11,7 @@ const HorizontalNews = ({mainNewsList}) => {
             orientation={"horizontal"}
         >
             <CarouselContent className="sm:w-auto w-[290px]">
-                {mainNewsList.map((news) => (
+                {mainNewsList?.map((news) => (
                     <CarouselItem key={news.slug} className="sm:basis-1/2">
                         <div className="md:p-0 pt-1">
                             <NewsList news={news}/>

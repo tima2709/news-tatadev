@@ -14,7 +14,7 @@ const VerticalNews = ({mainNewsList}) => {
             orientation={"vertical"}
         >
             <CarouselContent className="lg:max-h-[1080px] md:max-h-[1080px] max-h-auto sm:w-auto w-[287px]">
-                {mainNewsList.map((news) => (
+                {mainNewsList?.map((news) => (
                     <CarouselItem key={news.slug} className="sm:basis-1/2">
                         <div className="md:p-0 pt-1">
                             <NewsList news={news}/>

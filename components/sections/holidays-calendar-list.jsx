@@ -5,32 +5,32 @@ import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious}
 import HolidaysList from "@/components/shared/holidays-list";
 import {cn} from "@/lib/utils";
 import {getHolidays} from "@/lib/fetchData";
-import {format} from "date-fns";
+import {addMonths, format, subMonths} from "date-fns";
 import {ru} from "date-fns/locale";
 import Image from "next/image";
 
 const HolidaysCalendarList = ({className}) => {
-    const month = format(new Date(), 'MM');
-    const [currentDate, setCurrentDate] = useState(month);
+    const [currentDate, setCurrentDate] = useState(new Date());
 
     const [holidays, setHolidays] = useState([]);
 
     useEffect(() => {
-        getHolidays(currentDate)
+        const currentMonth = format(currentDate, "MM");
+        getHolidays(currentMonth)
             .then((data) => setHolidays(data))
             .catch((error) => console.error("Error fetching holidays:", error));
     }, [currentDate]);
 
-    const formattedMonth = format(currentDate, 'MMMM', {locale: ru});
-    const formattedYear = format(new Date(), "yyyy", {locale: ru});
+    const formattedMonth = format(currentDate, "MMMM", { locale: ru });
+    const formattedYear = format(currentDate, "yyyy", { locale: ru });
     const capitalizedMonth = formattedMonth.charAt(0).toUpperCase() + formattedMonth.slice(1);
 
     const handleNext = () => {
-        setCurrentDate(`${Number(currentDate) + 1}`);
+        setCurrentDate((prevDate) => addMonths(prevDate, 1));
     };
 
     const handlePrevious = () => {
-        setCurrentDate(`${Number(currentDate) - 1}`);
+        setCurrentDate((prevDate) => subMonths(prevDate, 1));
     };
 
     return (
@@ -43,9 +43,9 @@ const HolidaysCalendarList = ({className}) => {
                             className="text-[#777E98] pl-[6px]">{formattedYear}</span>
                         </h4>
                         <div className="p-1">
-                            {holidays.length > 0 ? (
-                                holidays.map((holiday) => (
-                                    <HolidaysList key={holiday.start_date} holiday={holiday}/>
+                            {holidays?.length > 0 ? (
+                                holidays?.map((holiday) => (
+                                    <HolidaysList key={holiday?.start_date} holiday={holiday}/>
                                 ))
                             ) : (
                                 <p>Нет праздников на этот месяц</p>
@@ -53,11 +53,11 @@ const HolidaysCalendarList = ({className}) => {
                         </div>
                     </CarouselItem>
                 </CarouselContent>
-                <CarouselNext disabled={currentDate === '12'} className="top-3 right-0 bg-white shadow-none"
+                <CarouselNext disabled={false} className="top-3 right-0 bg-white shadow-none"
                               onClick={handleNext}>
                     <Image src={"/ic_arrow-right-gray.svg"} alt={"icon right"} width={24} height={24}/>
                 </CarouselNext>
-                <CarouselPrevious disabled={currentDate === '1'} className="top-3 left-0 bg-white shadow-none"
+                <CarouselPrevious disabled={false} className="top-3 left-0 bg-white shadow-none"
                                   onClick={handlePrevious}>
                     <Image src={"/ic_arrow-left-gray.svg"} alt={"icon left"} width={24} height={24}/>
                 </CarouselPrevious>

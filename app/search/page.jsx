@@ -141,7 +141,7 @@ const Page = async ({searchParams}) => {
                         <div
                             className="lg:flex hidden">
                             <Banner className="h-[436px] w-[267px] mb-6 rounded-lg bg-[#E0EBFF]"
-                                    image={bannerImg?.side_picture} link={bannerImg.link}/>
+                                    image={bannerImg?.side_picture} link={bannerImg?.link}/>
                         </div>
                 }
             </div>
