@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from "next/image";
 import {getHeaderData, getPartners} from "@/lib/fetchData";
+import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
+import Link from "next/link";
 
 const PartnersRunning = async () => {
 
@@ -8,30 +10,43 @@ const PartnersRunning = async () => {
     const partnerTitle = await getHeaderData();
 
     return (
-        <div className="pb-12">
-            <h2 className="mb-6 max-w-[1440px] m-auto xl:px-[150px] lg:px-20 md:px-12 px-5 cursor-default select-none">{partnerTitle?.partners_title}</h2>
-            <div className={"w-full overflow-hidden bg-[#E0EBFF] py-[21px]"}>
-                <div className="flex gap-6 animate-[ticker_20s_linear_infinite]">
-                    {Array.from({ length: partners?.length < 10 ? 10 : partners.length }).map((_, index) => (
-                        <div
-                            key={index}
-                            className="flex items-center p-2 w-[270px] bg-white border border-[#E0EBFF] rounded-lg gap-2 flex-shrink-0"
-                        >
-                            <Image
-                                src={partners[index % partners.length]?.icon}
-                                alt={partners[index % partners.length]?.name}
-                                width={73}
-                                height={73}
-                                className="object-contain"
-                            />
-                            <p className="text-[#101828] font-normal text-sm text-wrap">
-                                {partners[index % partners.length]?.name}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
+       <div className="flex gap-6">
+           <div className="pb-12 lg:w-[calc(100%-291px)] w-full">
+               <h2 className="cursor-default select-none mb-6">{partnerTitle?.partners_title}</h2>
+               <Carousel
+                   opts={{
+                       align: "start",
+                   }}
+                   orientation={"horizontal"}
+               >
+                   <CarouselContent className="w-[290px]">
+                       {partners?.map((item, index) => (
+                           <CarouselItem key={index} className=" basis-full">
+                               <Link href={item?.link} target="_blank">
+                                   <div
+                                       className="flex items-center p-2 h-[89px]  bg-white border border-[#E0EBFF] rounded-lg gap-2 overflow-hidden"
+                                   >
+                                       <Image
+                                           src={item?.icon}
+                                           alt={item?.name}
+                                           width={70}
+                                           height={70}
+                                           className="object-cover shrink-0"
+                                       />
+                                       <p className="text-[#101828] font-normal text-sm text-wrap">
+                                           {item?.name}
+                                       </p>
+                                   </div>
+                               </Link>
+                           </CarouselItem>
+                       ))}
+                   </CarouselContent>
+                   <CarouselPrevious className="-top-10 right-10 md:flex hidden"/>
+                   <CarouselNext className="-top-10 right-0 md:flex hidden"/>
+               </Carousel>
+           </div>
+           <div className="lg:block hidden w-[267px] shrink-0"></div>
+       </div>
 
     );
 };

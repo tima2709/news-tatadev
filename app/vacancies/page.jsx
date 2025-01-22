@@ -43,7 +43,7 @@ const Page = async () => {
 
     return (
         <Container>
-            <div className="flex gap-6 pb-10 lg:w-[calc(100%-291px)]">
+            <div className="flex gap-6 pt-6 pb-10 lg:w-[calc(100%-291px)]">
                 <div className="flex-1">
                     <h2 className="mb-5">Вакансии</h2>
                     <div>

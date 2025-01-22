@@ -37,7 +37,7 @@ export async function generateMetadata() {
 
 const Page = () => {
     return (
-        <Container>
+        <Container className="pt-6">
             <HolidaysCalendarList className="md:w-[267px] w-full"/>
         </Container>
     );

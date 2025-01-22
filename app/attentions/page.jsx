@@ -41,7 +41,7 @@ const Page = async () => {
     const attentions = await getAttentionsData();
 
     return (
-        <Container>
+        <Container className="pt-6">
             <div className="flex gap-6 pb-10 lg:w-[calc(100%-291px)]">
                 <div className="flex-1">
                     <h2 className="mb-5">Объявления</h2>

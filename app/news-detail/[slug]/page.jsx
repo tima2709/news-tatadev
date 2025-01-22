@@ -5,7 +5,7 @@ import TopPublicationsCard from "@/components/shared/top-publications-card";
 import DetailNewsImgCarousel from "@/components/shared/detail-news-img-carousel";
 import AddComments from "@/components/shared/add-comments";
 import EmojiReactions from '@/components/shared/emoji-reactions';
-import {getMetaTags, getOneNews, getSimilarNewsList} from "@/lib/fetchData";
+import {getMetaTags, getNewsByAuthor, getOneNews, getSimilarNewsList} from "@/lib/fetchData";
 import {processContent} from '@/lib/utils';
 import Link from "next/link"
 import {format} from "date-fns";
@@ -54,7 +54,10 @@ const Page = async ({params}) => {
     const news = await getOneNews(slug);
     const createdDate = format(news?.created_at, "dd.MM.yyyy")
     const similarNews = await getSimilarNewsList(slug, "5");
+    const authorsNews = await getNewsByAuthor(news?.author?.slug, slug)
     const content = processContent(news?.content);
+
+    console.log(authorsNews, 'auth')
 
     return (
         <Container className="lg:flex block gap-6 pt-6 pb-10 md:bg-transparent bg-white">
@@ -91,16 +94,28 @@ const Page = async ({params}) => {
                 </div>
                 <AddComments slug={news.slug}/>
             </div>
-            {
-                similarNews.length > 0 && (
-                    <div className="lg:w-[267px] w-full lg:mt-0 mt-6 md:border border-[#E0EBFF] rounded-lg bg-white h-full">
-                        <h4 className="text-sm mt-7 mb-4 text-center font-bold">
-                            Похожие публикации
-                        </h4>
-                        <TopPublicationsCard classname="last:mb-8" newsList={similarNews}/>
-                    </div>
-                )
-            }
+           <div>
+               {
+                   similarNews.length > 0 && (
+                       <div className="lg:w-[267px] mb-5 h-max w-full lg:mt-0 mt-6 md:border border-[#E0EBFF] rounded-lg bg-white h-full">
+                           <h4 className="text-sm mt-7 mb-4 text-center font-bold">
+                               Похожие публикации
+                           </h4>
+                           <TopPublicationsCard classname="last:mb-8" newsList={similarNews}/>
+                       </div>
+                   )
+               }
+               {
+                   authorsNews?.results?.length > 0 && (
+                       <div className="lg:w-[267px] h-max w-full lg:mt-0 mt-6 md:border border-[#E0EBFF] rounded-lg bg-white h-full">
+                           <h4 className="text-sm mt-7 mb-4 text-center font-bold">
+                               Статьи этого автора
+                           </h4>
+                           <TopPublicationsCard classname="last:mb-8" newsList={authorsNews?.results}/>
+                       </div>
+                   )
+               }
+           </div>
 
         </Container>
     );

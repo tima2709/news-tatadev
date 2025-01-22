@@ -42,7 +42,7 @@ const Page = async ({params}) => {
     const staticData = await getStaticPagesBySlug(slug);
 
     return (
-        <Container className="min-h-[600px]">
+        <Container className="min-h-[600px] pt-6">
             <div className="bg-white p-6 rounded-lg">
                 <h2 className="mb-6">{staticData.title}</h2>
                 <div
