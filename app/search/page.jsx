@@ -74,7 +74,7 @@ const Page = async ({searchParams}) => {
     }
 
     return (
-        <Container>
+        <Container className="pt-6">
             {
                 keyOfQuery === "search" &&
                 <div className="pt-6">

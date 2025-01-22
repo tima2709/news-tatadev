@@ -13,7 +13,7 @@ const MainNewsLists = async () => {
 
     return (
         <>
-            <Banner className="h-[138px] w-full mb-6" image={bannerImg?.picture} link={bannerImg?.link}/>
+            <Banner className="h-[138px] w-full mb-6 mt-6" image={bannerImg?.picture} link={bannerImg?.link}/>
             <section className="lg:flex block gap-6">
                 <div className="md:block hidden flex-1">
                     <VerticalNews mainNewsList={mainNewsList}/>

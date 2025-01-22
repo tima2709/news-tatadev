@@ -47,7 +47,7 @@ const Page = async ({searchParams}) => {
     const searchData = await getSearchedData(queryString);
 
     return (
-        <Container>
+        <Container className="pt-6">
             <NewsArchive page="archive-news" className="mb-6"/>
             <div>
                 {searchData?.results?.length
