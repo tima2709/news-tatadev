@@ -69,7 +69,8 @@ const AddComments = ({ slug }) => {
     useEffect(() => {
         const handleGetComments = async () => {
             const data = await getComments(slug);
-            setComments(data.results);
+            const commentsList = data?.results || [];
+            setComments(commentsList.reverse());
         };
         handleGetComments();
     }, [slug]);
