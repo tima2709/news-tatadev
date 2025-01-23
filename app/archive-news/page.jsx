@@ -54,7 +54,7 @@ const Page = async ({searchParams}) => {
                     ? searchData?.results?.map((news) => (
                         news.rubric.type === "article"
                             ? <NewsList key={news.slug} news={news} className="mb-6"/>
-                            : <YoutubeCard key={news.slug} news={news} className="mb-6"/>
+                            : <div className="mb-6"><YoutubeCard key={news.slug} news={news}/></div>
                     ))
                     :
                     <div>
