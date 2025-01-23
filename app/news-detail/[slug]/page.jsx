@@ -57,8 +57,6 @@ const Page = async ({params}) => {
     const authorsNews = await getNewsByAuthor(news?.author?.slug, slug)
     const content = processContent(news?.content);
 
-    console.log(authorsNews, 'auth')
-
     return (
         <Container className="lg:flex block gap-6 pt-6 pb-10 md:bg-transparent bg-white">
             <div className="flex-1">
@@ -71,7 +69,7 @@ const Page = async ({params}) => {
                     <h2 className="text-2xl font-bold mb-4">
                         {news?.title}
                     </h2>
-                    {news.media && <DetailNewsImgCarousel images={news?.media}/>}
+                    {news?.media && <DetailNewsImgCarousel media={news?.media}/>}
                     <div
                         dangerouslySetInnerHTML={{__html: content}}
                         className="ck-content mb-5 "
