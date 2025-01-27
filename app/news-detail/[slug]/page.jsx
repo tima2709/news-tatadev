@@ -56,7 +56,7 @@ const Page = async ({params}) => {
 
     const createdDate = format(news?.created_at, "dd.MM.yyyy")
     const similarNews = await getSimilarNewsList(slug, "5");
-    const authorsNews = await getNewsByAuthor(news?.author?.slug, slug)
+    const authorsNews = await getNewsByAuthor(news?.author?.slug, slug, true)
     const content = processContent(news?.content, galleryDelegate);
 
     return (
