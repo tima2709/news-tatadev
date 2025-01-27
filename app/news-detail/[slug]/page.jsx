@@ -1,4 +1,4 @@
-import 'ckeditor5/ckeditor5.css';
+// import 'ckeditor5/ckeditor5.css';
 import React from 'react';
 import {Container} from "@/components/shared/container";
 import TopPublicationsCard from "@/components/shared/top-publications-card";
@@ -11,7 +11,7 @@ import Link from "next/link"
 import {format} from "date-fns";
 import ShareSocialMedia from "@/components/shared/share-social-media";
 import {headers} from "next/headers";
-
+import FancyboxClient from '@/components/ui/fancybox';
 
 
 
@@ -52,10 +52,12 @@ export async function generateMetadata({params}) {
 const Page = async ({params}) => {
     const {slug} = await params;
     const news = await getOneNews(slug);
+    const galleryDelegate = "detail-gallery";
+
     const createdDate = format(news?.created_at, "dd.MM.yyyy")
     const similarNews = await getSimilarNewsList(slug, "5");
     const authorsNews = await getNewsByAuthor(news?.author?.slug, slug)
-    const content = processContent(news?.content);
+    const content = processContent(news?.content, galleryDelegate);
 
     return (
         <Container className="lg:flex block gap-6 pt-6 pb-10 md:bg-transparent bg-white">
@@ -69,11 +71,14 @@ const Page = async ({params}) => {
                     <h2 className="text-2xl font-bold mb-4">
                         {news?.title}
                     </h2>
-                    {news?.media && <DetailNewsImgCarousel media={news?.media}/>}
+                    <FancyboxClient delegate={`[data-fancybox="${galleryDelegate}"]`}>
+                    {news?.media && <DetailNewsImgCarousel media={news?.media} galleryDelegate={galleryDelegate}/>}
                     <div
                         dangerouslySetInnerHTML={{__html: content}}
                         className="ck-content mb-5 "
-                    ></div>
+                    ></div>    
+                    </FancyboxClient> 
+                    
                     <div className="my-5">
                         {news?.author?.full_name && <Link href={`/search?author=${news?.author?.slug}&page=1`}><span className="text-xs font-normal text-[#1757B9]">Автор: {news?.author?.full_name}</span></Link>}
                     </div>
