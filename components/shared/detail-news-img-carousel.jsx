@@ -3,9 +3,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
 import YoutubeCard from "@/components/shared/youtube-card";
-import {cn} from "@/lib/utils";
 
-const DetailNewsImgCarousel = ({media}) => {
+const DetailNewsImgCarousel = ({media, galleryDelegate}) => {
 
     const [api, setApi] = useState();
     const [current, setCurrent] = useState(0);
@@ -50,23 +49,26 @@ const DetailNewsImgCarousel = ({media}) => {
                         <CarouselItem key={index}>
                             <div className="relative w-full aspect-video md:rounded-lg rounded-sm overflow-hidden">
                                 {item?.mime_type === "image/jpeg" ? (
-                                    <img
-                                        src={item?.file}
-                                        alt={`Slide ${index + 1}`}
-                                        className="w-full h-full object-cover"
-                                    />
+                                    <a data-fancybox={galleryDelegate} data-src={item?.file} >
+                                        <img
+                                            src={item?.file}
+                                            alt={`Slide ${index + 1}`}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </a>
                                 ) : item?.mime_type === "video/mp4" || item?.file?.includes("www.youtube.com") ? (
                                     <YoutubeCard file={item.file}/>
                                 ) : (
-                                    <img
-                                        src={item?.file}
-                                        alt={`Slide ${index + 1}`}
-                                        className="w-full h-full object-cover"
-                                    />
+                                    <a data-fancybox={galleryDelegate} data-src={item?.file} >
+                                        <img
+                                            src={item?.file}
+                                            alt={`Slide ${index + 1}`}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </a>
                                 )}
                             </div>
                         </CarouselItem>
-
                     ))}
                 </CarouselContent>
                 {
