@@ -2,12 +2,12 @@ import React from 'react';
 import HolidaysCalendarList from "@/components/sections/holidays-calendar-list";
 import AllRubricsNews from "@/components/shared/new-card/all-rubrics-news";
 import NewsArchive from "@/components/shared/news-archive";
-import {getRandomBanner, getRubrics} from "@/lib/fetchData";
+import {getRandomBanner, getRubricsForMainPage} from "@/lib/fetchData";
 import Banner from "@/components/shared/banner";
 
 const NewsRubrics = async () => {
 
-    const rubrics = await getRubrics();
+    const rubrics = await getRubricsForMainPage();
 
     const bannerImg = await getRandomBanner();
 
