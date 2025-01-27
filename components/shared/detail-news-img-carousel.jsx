@@ -93,7 +93,7 @@ const DetailNewsImgCarousel = ({media}) => {
                     <button
                         key={idx}
                         onClick={() => handlePreviewClick(idx)}
-                        className={`sm:block hidden z-10 relative flex-shrink-0 w-[118px] h-[72px] rounded-lg overflow-hidden transition-all snap-start ${
+                        className={`sm:block hidden z-[1] relative flex-shrink-0 w-[118px] h-[72px] rounded-lg overflow-hidden transition-all snap-start ${
                             current === idx ? "opacity-100" : "opacity-50"
                         }`}
                     >
