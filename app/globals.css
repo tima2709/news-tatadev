@@ -82,6 +82,15 @@ h5 {
   line-height: 16px;
 }
 
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 main {
   background-color: #F5F9FF;
 }

@@ -30,7 +30,7 @@ const NewsMagazineCard = ({ pdfUrl, className, type }) => {
                     {type !== "main" && <p className="mb-2 text-left font-medium text-sm">{date(pdfUrl?.publish_date)}</p>}
                     <img className="custom-shadow border-none object-cover" src={pdfUrl?.cover_img} alt={pdfUrl?.title} style={{ width: "100%", height: "100%" }}></img>
                 </DialogTrigger>
-                <DialogContent className="max-w-[1300px] h-full overflow-scroll">
+                <DialogContent className="max-w-[1300px] h-full overflow-scroll no-scrollbar">
                     <DialogHeader className="hidden"><DialogTitle></DialogTitle><DialogDescription></DialogDescription></DialogHeader>
                     <PDFViewer pdfUrl={pdfUrl}/>
                 </DialogContent>
