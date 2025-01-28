@@ -6,7 +6,7 @@ import PartnersRunning from "@/components/shared/partners-running";
 import RunningNews from "@/components/shared/running-news";
 import React from "react";
 import {getMetaTags} from "@/lib/fetchData";
-import { headers } from 'next/headers'; // Импорт для получения заголовков
+import { headers } from 'next/headers';
 
 export async function generateMetadata() {
     const headersList = await headers();

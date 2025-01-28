@@ -49,7 +49,7 @@ const NewsPdfContent = ({pdfNewsFiles, pdfNewsYears, slug}) => {
                         align: "start",
                     }}
                 >
-                    <CarouselContent className="sm:w-[281px] w-[250px]">
+                    <CarouselContent className="sm:max-w-[281px] max-w-[250px] w-full">
                         {
                             pdfNewsYears.map((year) => (
                                 <Link key={year} href={`/archive-releases/${year}`}>

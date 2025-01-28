@@ -8,12 +8,8 @@ import OurMagazine from "@/components/shared/our-magazine";
 
 const NewsRubrics = async () => {
 
-<<<<<<< HEAD
-    const rubrics = await getRubrics();
-=======
     const rubrics = await getRubricsForMainPage();
 
->>>>>>> 1831c00e623f1fedc4ca1bebee2541ec73278563
     const bannerImg = await getRandomBanner();
 
 
