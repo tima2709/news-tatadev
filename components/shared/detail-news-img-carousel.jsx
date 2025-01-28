@@ -53,7 +53,7 @@ const DetailNewsImgCarousel = ({media, galleryDelegate}) => {
                                         <img
                                             src={item?.file}
                                             alt={`Slide ${index + 1}`}
-                                            className="w-full h-full object-cover"
+                                            className="w-full h-full object-cover cursor-pointer"
                                         />
                                     </a>
                                 ) : item?.mime_type === "video/mp4" || item?.file?.includes("www.youtube.com") ? (
@@ -63,7 +63,7 @@ const DetailNewsImgCarousel = ({media, galleryDelegate}) => {
                                         <img
                                             src={item?.file}
                                             alt={`Slide ${index + 1}`}
-                                            className="w-full h-full object-cover"
+                                            className="w-full h-full object-cover cursor-pointer"
                                         />
                                     </a>
                                 )}
@@ -95,7 +95,7 @@ const DetailNewsImgCarousel = ({media, galleryDelegate}) => {
                     <button
                         key={idx}
                         onClick={() => handlePreviewClick(idx)}
-                        className={`sm:block hidden z-10 relative flex-shrink-0 w-[118px] h-[72px] rounded-lg overflow-hidden transition-all snap-start ${
+                        className={`sm:block hidden z-[1] relative flex-shrink-0 w-[118px] h-[72px] rounded-lg overflow-hidden transition-all snap-start ${
                             current === idx ? "opacity-100" : "opacity-50"
                         }`}
                     >

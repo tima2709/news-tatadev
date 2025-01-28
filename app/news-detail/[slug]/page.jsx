@@ -1,4 +1,4 @@
-// import 'ckeditor5/ckeditor5.css';
+import 'ckeditor5/ckeditor5.css';
 import React from 'react';
 import {Container} from "@/components/shared/container";
 import TopPublicationsCard from "@/components/shared/top-publications-card";

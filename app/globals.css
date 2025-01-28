@@ -54,6 +54,10 @@ p {
   margin-bottom: 8px;
 }
 
+.ck-content img {
+  cursor: pointer;
+}
+
 h2 {
   font-weight: 700;
   font-size: 26px;
@@ -80,6 +84,10 @@ h5 {
 
 main {
   background-color: #F5F9FF;
+}
+
+.custom-shadow {
+  box-shadow: 0px 0px 4px 0px #1757B933;
 }
 
 @media screen and (max-width: 950px) {

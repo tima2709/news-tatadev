@@ -22,7 +22,7 @@ const HolidaysCalendarList = ({className}) => {
     }, [currentDate]);
 
     const formattedMonth = format(currentDate, "MMMM", { locale: ru });
-    const formattedYear = format(currentDate, "yyyy", { locale: ru });
+    const formattedYear = format(new Date, "yyyy", { locale: ru });
     const capitalizedMonth = formattedMonth.charAt(0).toUpperCase() + formattedMonth.slice(1);
 
     const handleNext = () => {

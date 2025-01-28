@@ -12,7 +12,7 @@ const Header = async () => {
 
     return (
         <header
-            className="lm:static fixed lm:border-none border-b border-[#E0EBFF] bg-white z-10 w-full top-0 xl:block flex flex-row-reverse justify-between max-w-[1440px] mx-auto xl:py-4 xl:px-[150px]  lg:px-20 md:px-12 p-5">
+            className="lm:static fixed lm:border-none border-b border-[#E0EBFF] bg-white z-[10000] w-full top-0 xl:block flex flex-row-reverse justify-between max-w-[1440px] mx-auto xl:py-4 xl:px-[150px]  lg:px-20 md:px-12 p-5">
             <div className="lm:fixed lm:border-b bg-white border-[#E0EBFF] z-10 top-0 right-0 left-0">
                 <nav
                     className="max-w-[1440px] mx-auto xl:px-[150px] lg:px-20 lm:px-12 lm:py-4 bg-white flex items-center justify-between gap-4 ">
