@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from "next/image";
-import {getHeaderData, getRubrics, getSocialLinks, getStaticPages} from "@/lib/fetchData";
+import {getHeaderData, getRubrics, getSocialLinks, getStaticPages, getViewCounts} from "@/lib/fetchData";
 import Link from 'next/link';
 
 const Footer = async () => {
@@ -9,6 +9,7 @@ const Footer = async () => {
     const aboutUsContacts = await getStaticPages();
     const socialLinks = await getSocialLinks();
     const rubrics = await getRubrics();
+    const countViews = await getViewCounts();
 
     const fourthGrid = [{slug: "attentions", title: "Объявления",},{slug: "vacancies", title:  "Вакансии"}]
     const onMobileGrid = [{slug: "holidays", title: "Праздники месяца"}, {slug: "archive-news", title: "Архив новостей"}]
@@ -17,20 +18,28 @@ const Footer = async () => {
         <footer
             className="grid lg:grid-cols-5 grid-cols-2 bg-[#E0EBFF] xl:px-[150px] lg:px-20 md:px-12 p-5 pt-8 md:pb-[102px] pb-20 lg:gap-[60px] md:gap-x-6 gap-x-3">
             <div className="lg:col-span-2 md:order-0 md:block hidden">
-                <div className="flex mb-4 gap-5 items-end">
-                    <h6 className="font-normal text-xs">{headerData.support_title}</h6>
-                    <Image src={headerData.support_logo} alt={"support logo"} width={88} height={25}/>
-                </div>
-                <p className="font-normal text-xs">{headerData.support_preview}
-                </p>
-                <div className="flex items-center gap-2 mt-5">
-                    {
-                        socialLinks.map((link) => (
-                            <a href={link.link} target="_blank" key={link.name}>
-                                <Image src={link.icon} alt={link.name} width={32} height={32}/>
-                            </a>
-                        ))
-                    }
+                <div className="flex flex-col justify-between h-full">
+                    <div>
+                        <div className="flex mb-4 gap-5 lg:items-end items-start">
+                            <h6 className="font-normal text-xs">{headerData.support_title}</h6>
+                            <Image src={headerData.support_logo} alt={"support logo"} width={88} height={25}/>
+                        </div>
+                        <p className="font-normal text-xs">{headerData.support_preview}
+                        </p>
+                        <div className="flex items-center gap-2 mt-5">
+                            {
+                                socialLinks.map((link) => (
+                                    <a href={link.link} target="_blank" key={link.name}>
+                                        <Image src={link.icon} alt={link.name} width={32} height={32}/>
+                                    </a>
+                                ))
+                            }
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-1 lg:mb-0 mb-10">
+                        <img src="/eye-icon.svg" alt="eye icon" className="w-4 h-4 object-cover"/>
+                        <p className="text-[#101828] text-xs font-normal">{countViews.count} посетителей</p>
+                    </div>
                 </div>
             </div>
             <div className="md:order-2">
@@ -90,15 +99,19 @@ const Footer = async () => {
                             ))
                         }
                     </div>
-                    <div className="flex mb-4 gap-5 items-end">
+                    <div className="flex flex-wrap mb-4 gap-5 items-end">
                         <h6 className="font-normal text-xs">Сайт создан при поддержке Фонда “Русский мир”</h6>
                         <Image src={"/fond-logo.png"} alt={"logo"} width={88} height={25}/>
                     </div>
-                    <p className="font-normal text-xs text-[#777E98] max-w-[365px]">
+                    <p className="font-normal text-xs text-[#777E98] max-w-[365px] mb-10">
                         Размещенные материалы предназначены только для персонального
                         пользования. При использовании
                         материалов обязательна гиперссылка на ресурс.
                     </p>
+                    <div className="flex items-center gap-1">
+                        <img src="/eye-icon.svg" alt="eye icon" className="w-4 h-4 object-cover"/>
+                        <p className="text-[#101828] text-xs font-normal">{countViews.count} посетителей</p>
+                    </div>
                 </div>
             </div>
         </footer>

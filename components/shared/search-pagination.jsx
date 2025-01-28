@@ -11,6 +11,7 @@ import {
     PaginationPrevious
 } from "@/components/ui/pagination";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const SearchPagination = ({ searchData, slug, keyOfQuery, page }) => {
     const [pageCount, setPageCount] = useState(page);
@@ -41,7 +42,9 @@ const SearchPagination = ({ searchData, slug, keyOfQuery, page }) => {
                     <PaginationPrevious
                         disabled={pageCount === 1}
                         onClick={handlePrev}
-                    />
+                    >
+                        <Image src="/ic_arrow-left-gray.svg" alt="arrow icon right" width={24} height={24}/>
+                    </PaginationPrevious>
                 </PaginationItem>
                 {Array.from({ length: totalPages }, (_, index) => {
                     const pageNum = index + 1;
@@ -68,7 +71,8 @@ const SearchPagination = ({ searchData, slug, keyOfQuery, page }) => {
                     <PaginationNext
                         disabled={!searchData.next}
                         onClick={handleNext}
-                    />
+                    ><Image src="/ic_arrow-right-gray.svg" alt="arrow icon right" width={24} height={24}/>
+                    </PaginationNext>
                 </PaginationItem>
             </PaginationContent>
         </Pagination>

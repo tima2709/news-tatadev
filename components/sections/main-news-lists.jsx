@@ -4,6 +4,7 @@ import {getMainNewsListData, getRandomBanner, getTopNewsData} from "@/lib/fetchD
 import Banner from "@/components/shared/banner";
 import VerticalNews from "@/components/shared/main-news-carousel/vertical-news";
 import HorizontalNews from "@/components/shared/main-news-carousel/horizontal-news";
+import OurMagazine from "@/components/shared/our-magazine";
 
 const MainNewsLists = async () => {
 
@@ -25,6 +26,7 @@ const MainNewsLists = async () => {
                     <h4 className="md:text-sm text-[22px] mt-7 mb-4 text-center font-bold">Топ публикации</h4>
                     <TopPublicationsCard className="last:mb-8" newsList={topList}/>
                 </div>
+                <OurMagazine className="lg:hidden flex justify-center items-center"/>
             </section>
         </>
     );

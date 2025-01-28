@@ -53,7 +53,7 @@ const DetailNewsImgCarousel = ({media, galleryDelegate}) => {
                                         <img
                                             src={item?.file}
                                             alt={`Slide ${index + 1}`}
-                                            className="w-full h-full object-cover"
+                                            className="w-full h-full object-cover cursor-pointer"
                                         />
                                     </a>
                                 ) : item?.mime_type === "video/mp4" || item?.file?.includes("www.youtube.com") ? (
@@ -63,7 +63,7 @@ const DetailNewsImgCarousel = ({media, galleryDelegate}) => {
                                         <img
                                             src={item?.file}
                                             alt={`Slide ${index + 1}`}
-                                            className="w-full h-full object-cover"
+                                            className="w-full h-full object-cover cursor-pointer"
                                         />
                                     </a>
                                 )}
