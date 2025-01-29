@@ -63,7 +63,6 @@ const PDFViewer = ({ pdfUrl, setOpen }) => {
             renderPage(currentPage, canvasRefSingle);
             return;
         }
-
         renderPage(currentPage, canvasRefLeft);
         if (currentPage + 1 <= totalPages) {
             renderPage(currentPage + 1, canvasRefRight);
@@ -102,7 +101,7 @@ const PDFViewer = ({ pdfUrl, setOpen }) => {
 
     return (
         <div>
-            <div className="sticky  flex items-center justify-start bg-white rounded-lg w-max py-2 px-4 -top-14 right-[100%] left-[75%] gap-4 mb-4 z-10">
+            <div className="sticky  flex items-center justify-start bg-white rounded-lg w-max py-2 px-4 lm:-top-14 top-10 right-[100%] lx:left-[85%] lg:left-[80%] md:left-[75%] sm:left-[60%] left-[45%] -translate-x-[calc(50%-20px)] gap-4 mb-4 z-10">
                 <button onClick={handleZoomOut} className="p-2 bg-gray-300 rounded hover:bg-gray-400">
                     <Minus/>
                 </button>

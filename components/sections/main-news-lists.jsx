@@ -26,7 +26,7 @@ const MainNewsLists = async () => {
                     <h4 className="md:text-sm text-[22px] mt-7 mb-4 text-center font-bold">Топ публикации</h4>
                     <TopPublicationsCard className="last:mb-8" newsList={topList}/>
                 </div>
-                <OurMagazine className="lg:hidden flex justify-center items-center"/>
+                <OurMagazine className="lg:hidden" cardClass="max-w-[388px] w-full max-h-[554px] h-full"/>
             </section>
         </>
     );
