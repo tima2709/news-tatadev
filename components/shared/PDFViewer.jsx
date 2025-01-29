@@ -3,7 +3,6 @@ import "pdfjs-dist/build/pdf.worker.min.mjs";
 import React, { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { getDocument, GlobalWorkerOptions } from "pdfjs-dist";
 import {Minus, Plus, X} from "lucide-react";
-import {Button} from "@/components/ui/button";
 
 GlobalWorkerOptions.workerSrc = "pdfjs-dist/build/pdf.worker.min.mjs";
 
@@ -21,7 +20,6 @@ const PDFViewer = ({ pdfUrl, setOpen }) => {
         const loadPDF = async () => {
             try {
                 const loadedPdf = await getDocument(pdfUrl?.pdf_file).promise;
-                console.log(loadedPdf, 'pdf')
                 setPdf(loadedPdf);
                 setTotalPages(loadedPdf.numPages);
             } catch (error) {
@@ -33,8 +31,6 @@ const PDFViewer = ({ pdfUrl, setOpen }) => {
             loadPDF();
         }
     }, [pdfUrl]);
-
-    console.log(totalPages, 'pages')
 
     const renderPage = useCallback(
         async (pageNumber, canvasRef) => {
@@ -106,7 +102,7 @@ const PDFViewer = ({ pdfUrl, setOpen }) => {
 
     return (
         <div>
-            <div className="sticky flex items-center justify-start bg-white rounded-lg w-max py-2 px-4 top-0 left-0 gap-4 mb-4 z-10">
+            <div className="sticky  flex items-center justify-start bg-white rounded-lg w-max py-2 px-4 -top-14 right-[100%] left-[75%] gap-4 mb-4 z-10">
                 <button onClick={handleZoomOut} className="p-2 bg-gray-300 rounded hover:bg-gray-400">
                     <Minus/>
                 </button>
@@ -114,10 +110,10 @@ const PDFViewer = ({ pdfUrl, setOpen }) => {
                 <button onClick={handleZoomIn} className="p-2 bg-gray-300 rounded hover:bg-gray-400">
                     <Plus/>
                 </button>
-                <button onClick={() => setOpen(false)} className="w-5 h-5 "><X/></button>
+                <button onClick={() => setOpen(false)} className="group p-2 rounded hover:bg-gray-400 duration-300"><X/></button>
             </div>
-
             <div className=" flex gap-4 justify-center">
+
                 {
                     isFirstPage || isLastPage ?
                         <canvas ref={canvasRefSingle} className="border rounded shadow" />:
