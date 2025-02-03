@@ -20,6 +20,7 @@ import {getQueryString} from "@/lib/getQueryString";
 import YoutubeCard from "@/components/shared/youtube-card";
 import {headers} from "next/headers";
 
+
 export async function generateMetadata() {
     const headersList = await headers();
     const host = headersList.get('host');
