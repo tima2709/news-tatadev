@@ -20,7 +20,11 @@ const SearchPagination = ({ searchData, slug, keyOfQuery, page }) => {
 
     const handlePageClick = (pageNum) => {
         setPageCount(pageNum);
-        router.push(`/search/?${keyOfQuery}=${slug}&page=${pageNum}`);
+        if (keyOfQuery && keyOfQuery !== 'page') {
+            router.push(`/search/?${keyOfQuery}=${slug}&page=${pageNum}`);
+        } else {
+            router.push(`/search/?page=${pageNum}`)
+        }
     };
 
     const handleNext = () => {

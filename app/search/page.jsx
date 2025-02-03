@@ -57,7 +57,6 @@ const Page = async ({searchParams}) => {
 
     const [slug, page] = Object.values(query);
     const [keyOfQuery] = Object.keys(query);
-
     const queryString = getQueryString(query);
 
     const searchData = await getSearchedData(queryString);
@@ -68,7 +67,7 @@ const Page = async ({searchParams}) => {
 
     let formattedDate = null;
 
-    if (!isNaN(Date.parse(slug.toString()))) {
+    if (!isNaN(Date.parse(slug?.toString()))) {
         const dateObject = new Date(slug.toString());
         formattedDate = format(dateObject, "d MMMM", {locale: ru});
     }
@@ -91,7 +90,7 @@ const Page = async ({searchParams}) => {
                                 ? rubric?.title
                                 : author
                                     ? `Автор: ${author?.full_name}`
-                                    : tags ? tags?.name : ""
+                                    : tags ? tags?.name : "Все новости"
 
                     }
                 </h2>
@@ -112,7 +111,7 @@ const Page = async ({searchParams}) => {
                                 searchData.results.map((news) => (
                                     news.rubric.type === "article"
                                         ? <NewsList key={news.slug} news={news} className="mb-6"/>
-                                        : <div className="mb-6"><YoutubeCard key={news.slug} news={news}/></div>
+                                        : <div key={news.slug} className="mb-6"><YoutubeCard key={news.slug} news={news}/></div>
                                 ))
                             ) : (
                                 <div>

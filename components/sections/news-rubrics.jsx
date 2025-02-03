@@ -5,6 +5,7 @@ import NewsArchive from "@/components/shared/news-archive";
 import {getRandomBanner, getRubricsForMainPage} from "@/lib/fetchData";
 import Banner from "@/components/shared/banner";
 import OurMagazine from "@/components/shared/our-magazine";
+import AllNewsCarousel from "@/components/shared/new-card/all-news-carousel";
 
 const NewsRubrics = async () => {
 
@@ -15,7 +16,10 @@ const NewsRubrics = async () => {
 
     return (
         <section className="flex lg:mt-16 lm:mt-12 gap-6">
-            <AllRubricsNews rubrics={rubrics}/>
+            <div className="lg:w-[calc(100%-291px)] w-full">
+                <AllNewsCarousel/>
+                <AllRubricsNews rubrics={rubrics}/>
+            </div>
             <div className="lg:block hidden w-[267px] flex-shrink-0">
                 <OurMagazine className="mt-[100px]"/>
                 <HolidaysCalendarList className="mb-5 mt-5 w-[267px]"/>
