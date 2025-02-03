@@ -41,7 +41,7 @@ const SearchInput = ({className, handleClose, inputRef}) => {
                 className="w-full px-4 py-4 pr-12 border border-[#E0EBFF] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D1E2FF]"
             />
 
-            {search.length
+            {search?.length
                 ? <Button
                     className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-transparent border-none hover:bg-white shadow-none"
                     onClick={handleClearSearch}

@@ -1,30 +1,27 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
     Pagination,
     PaginationContent,
-    PaginationEllipsis,
     PaginationItem,
     PaginationLink,
     PaginationNext,
     PaginationPrevious
 } from "@/components/ui/pagination";
-import { useRouter } from "next/navigation";
+import {useRouter} from "next/navigation";
 import Image from "next/image";
 
-const SearchPagination = ({ searchData, slug, keyOfQuery, page }) => {
+const SearchPagination = ({searchData, slug, keyOfQuery, page}) => {
     const [pageCount, setPageCount] = useState(page);
     const router = useRouter();
     const totalPages = Math.ceil(searchData.count / 10);
 
     const handlePageClick = (pageNum) => {
         setPageCount(pageNum);
-        if (keyOfQuery && keyOfQuery !== 'page') {
-            router.push(`/search/?${keyOfQuery}=${slug}&page=${pageNum}`);
-        } else {
-            router.push(`/search/?page=${pageNum}`)
-        }
+
+        router.push(`/search/?${keyOfQuery}=${slug}&page=${pageNum}`);
+
     };
 
     const handleNext = () => {
@@ -42,7 +39,7 @@ const SearchPagination = ({ searchData, slug, keyOfQuery, page }) => {
     return (
         <Pagination className="relative">
             <PaginationContent>
-                <PaginationItem  className="absolute left-0">
+                <PaginationItem className="absolute left-0">
                     <PaginationPrevious
                         disabled={pageCount === 1}
                         onClick={handlePrev}
@@ -51,7 +48,7 @@ const SearchPagination = ({ searchData, slug, keyOfQuery, page }) => {
                     </PaginationPrevious>
                 </PaginationItem>
                 <div className=" flex max-w-[300px] no-scrollbar overflow-x-scroll">
-                    {Array.from({ length: totalPages }, (_, index) => {
+                    {Array.from({length: totalPages}, (_, index) => {
                         const pageNum = index + 1;
                         return (
                             <PaginationItem key={pageNum}>

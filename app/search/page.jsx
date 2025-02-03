@@ -60,7 +60,7 @@ const Page = async ({searchParams}) => {
     const [keyOfQuery] = Object.keys(query);
     const queryString = getQueryString(query);
 
-    const searchData = await getSearchedData(queryString);
+    const searchData = await getSearchedData(queryString, 10, page);
     const bannerImg = await getRandomBanner();
     const rubric = await getRubricBySlug(slug);
     const author = await getAuthorBySlug(slug);

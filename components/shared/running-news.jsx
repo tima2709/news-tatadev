@@ -14,7 +14,7 @@ const RunningNews = async ({className}) => {
                         <div className="inline-block">
                             {Array.from({length: urgentList.length <= 6 ? 6 : urgentList.length}).map((_, index) => (
                                 <span key={index} className="inline-block text-[#1757B9] font-semibold py-2">
-              <span className="px-4">•</span> {urgentList[index % urgentList.length].title}
+              <span className="px-4">•</span> {urgentList[index % urgentList?.length].title}
             </span>
                             ))}
                         </div>

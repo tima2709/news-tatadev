@@ -18,7 +18,7 @@ const NewsPdfContent = ({pdfNewsFiles, pdfNewsYears, slug}) => {
     return (
         <div>
             <div>
-                {pdfNewsFiles && pdfNewsFiles.length
+                {pdfNewsFiles && pdfNewsFiles?.length
                     ? pdfNewsFiles?.map((el, index) => (
                         <div key={index} className="mb-5">
                             <h4 className="font-medium text-xl mb-4">{month(el.month)}</h4>

@@ -64,7 +64,7 @@ const Page = async ({params}) => {
             <div className="flex-1">
                 <div className="md:p-6 md:border md:border-[#E0EBFF] bg-white rounded-lg md:mb-6 mb-10">
                     <div className="flex items-center justify-between mb-5">
-                        <Link href={`/search?rubric=${news.rubric?.slug}&page=1`}><span
+                        <Link href={`/search?rubric=${news?.rubric?.slug}&page=1`}><span
                             className="font-bold text-[#1757B9] text-sm">{news.rubric?.title}</span></Link>
                         <span className="font-normal text-[#777E98] text-xs">{createdDate}</span>
                     </div>
@@ -99,7 +99,7 @@ const Page = async ({params}) => {
             </div>
            <div>
                {
-                   similarNews.length > 0 && (
+                   similarNews?.length > 0 && (
                        <div className="lg:w-[267px] mb-5 h-max w-full lg:mt-0 mt-6 md:border border-[#E0EBFF] rounded-lg bg-white h-full">
                            <h4 className="text-sm mt-7 mb-4 text-center font-bold">
                                Похожие публикации

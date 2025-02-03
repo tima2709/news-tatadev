@@ -77,14 +77,14 @@ const DetailNewsImgCarousel = ({media, galleryDelegate}) => {
                         <CarouselPrevious className="right-10 -bottom-16 top-110"/>
                         <CarouselNext className="right-0 -bottom-16 top-110"/>
                         <span
-                            className="absolute -bottom-[4.5rem] right-1 font-medium text-sm text-[#777E98]">{`${current + 1} из ${media.length}`}</span>
+                            className="absolute -bottom-[4.5rem] right-1 font-medium text-sm text-[#777E98]">{`${current + 1} из ${media?.length}`}</span>
                     </>
                 }
             </Carousel>
 
             <div
                 ref={thumbnailsRef}
-                className={`flex relative gap-4 mt-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory ${media.length <= 5 ? 'items-center justify-center w-full' : 'max-w-[665px]'}`}
+                className={`flex relative gap-4 mt-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory ${media?.length <= 5 ? 'items-center justify-center w-full' : 'max-w-[665px]'}`}
                 style={{
                     scrollbarWidth: 'none',
                     msOverflowStyle: 'none',

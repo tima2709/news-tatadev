@@ -7,7 +7,7 @@ const AllRubricsNews = async ({rubrics}) => {
 
     const rubricNews = await getNewsByRubrics(rubrics);
 
-    const filteredRubricNews = rubricNews.filter(rubric => rubric.news && rubric.news.length > 0);
+    const filteredRubricNews = rubricNews.filter(rubric => rubric?.news && rubric?.news?.length > 0);
 
     return (
         <>

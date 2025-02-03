@@ -46,7 +46,7 @@ const Page = async () => {
                 <div className="flex-1">
                     <h2 className="mb-5">Объявления</h2>
                     <div>
-                        {attentions?.results.length
+                        {attentions?.results?.length
                             ? attentions?.results?.map((news) => (
                                 <AttetionList pathName="attentions" key={news.slug} news={news} className="mb-6" title="Объявления"/>
                             ))
