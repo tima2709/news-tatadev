@@ -50,27 +50,25 @@ const SearchPagination = ({ searchData, slug, keyOfQuery, page }) => {
                         <Image src="/ic_arrow-left-gray.svg" alt="arrow icon right" width={24} height={24}/>
                     </PaginationPrevious>
                 </PaginationItem>
-                {Array.from({ length: totalPages }, (_, index) => {
-                    const pageNum = index + 1;
-                    return (
-                        <PaginationItem key={pageNum}>
-                            <PaginationLink
-                                className={`font-medium text-sm rounded-full cursor-pointer hover:bg-[#D1E2FF] border-none ${
-                                    pageNum === Number(page) ? "text-[#1757B9] bg-[#E0EBFF] " : "text-[#777E98]"
-                                }`}
-                                isActive={pageNum === Number(page)}
-                                onClick={() => handlePageClick(pageNum)}
-                            >
-                                {pageNum}
-                            </PaginationLink>
-                        </PaginationItem>
-                    );
-                })}
-                {totalPages > 5 && (
-                    <PaginationItem>
-                        <PaginationEllipsis />
-                    </PaginationItem>
-                )}
+                <div className=" flex max-w-[300px] no-scrollbar overflow-x-scroll">
+                    {Array.from({ length: totalPages }, (_, index) => {
+                        const pageNum = index + 1;
+                        return (
+                            <PaginationItem key={pageNum}>
+                                <PaginationLink
+                                    className={`font-medium text-sm rounded-full cursor-pointer hover:bg-[#D1E2FF] border-none ${
+                                        pageNum === Number(page) ? "text-[#1757B9] bg-[#E0EBFF] " : "text-[#777E98]"
+                                    }`}
+                                    isActive={pageNum === Number(page)}
+                                    onClick={() => handlePageClick(pageNum)}
+                                >
+                                    {pageNum}
+                                </PaginationLink>
+                            </PaginationItem>
+                        );
+                    })}
+
+                </div>
                 <PaginationItem className="absolute right-0">
                     <PaginationNext
                         disabled={!searchData.next}
