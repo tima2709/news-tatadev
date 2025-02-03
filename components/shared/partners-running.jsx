@@ -10,18 +10,18 @@ const PartnersRunning = async () => {
     const partnerTitle = await getHeaderData();
 
     return (
-       <div className="flex gap-6">
-           <div className="pb-12 lg:w-[calc(100%-291px)] w-full">
+       <div className="pb-12 w-full">
                <h2 className="cursor-default select-none mb-6">{partnerTitle?.partners_title}</h2>
                <Carousel
                    opts={{
                        align: "start",
+                       loop: true
                    }}
                    orientation={"horizontal"}
                >
-                   <CarouselContent className="w-[290px]">
+                   <CarouselContent className="md:w-full w-[280px]">
                        {partners?.map((item, index) => (
-                           <CarouselItem key={index} className=" basis-full">
+                           <CarouselItem key={index} className=" lg:basis-1/4 md:basis-1/3 basis-full">
                                <Link href={item?.link} target="_blank">
                                    <div
                                        className="flex items-center p-2 h-[89px]  bg-white border border-[#E0EBFF] rounded-lg gap-2 overflow-hidden"
@@ -44,8 +44,6 @@ const PartnersRunning = async () => {
                    <CarouselPrevious className="-top-10 right-10 md:flex hidden"/>
                    <CarouselNext className="-top-10 right-0 md:flex hidden"/>
                </Carousel>
-           </div>
-           <div className="lg:block hidden w-[267px] shrink-0"></div>
        </div>
 
     );

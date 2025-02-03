@@ -7,6 +7,7 @@ import RunningNews from "@/components/shared/running-news";
 import React from "react";
 import {getMetaTags} from "@/lib/fetchData";
 import { headers } from 'next/headers';
+import AllNewsCarousel from "@/components/shared/new-card/all-news-carousel";
 
 export async function generateMetadata() {
     const headersList = await headers();

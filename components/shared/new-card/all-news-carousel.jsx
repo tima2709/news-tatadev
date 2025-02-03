@@ -1,24 +1,27 @@
 import React from 'react';
-import Image from "next/image";
 import Link from "next/link";
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
+import Image from "next/image";
+import {getSearchedData} from "@/lib/fetchData";
 
-const NewsCard = ({rubric}) => {
+const AllNewsCarousel = async () => {
+
+    const allNews = await getSearchedData("rubric_type=article");
+
     return (
         <Carousel
             opts={{
                 align: "start",
             }}
-            className="my-12"
-            key={rubric?.slug}
+            className="lg:mt-20 lm:mt-12"
         >
             <h2
                 className="mb-6 md:text-[26px] text-[22px]">
-                <Link href={`/search/?rubric=${rubric?.slug}&page=1`}><span className="hover:text-[#1757B9] duration-200">{rubric?.name}</span></Link>
+                <Link href={`/search/?rubric_type=article&page=1`}><span className="hover:text-[#1757B9] duration-200">Все новости</span></Link>
             </h2>
             <CarouselContent className="sm:w-auto w-[287px]">
-                {rubric?.news.map((news) => (
-                    <CarouselItem key={news.slug} className="lx:basis-1/4 md:basis-1/3 sm:basis-1/2">
+                {allNews?.results?.map((news) => (
+                    <CarouselItem key={news?.slug} className="lx:basis-1/4 md:basis-1/3 sm:basis-1/2">
                         <Link href={`/news-detail/${news?.slug}`}>
                             <div
                                 className="group flex flex-col min-w-[165px] min-h-[288px] h-full rounded-xl border border-[#E0EBFF] overflow-hidden bg-white cursor-pointer">
@@ -42,8 +45,6 @@ const NewsCard = ({rubric}) => {
                                 </div>
                             </div>
                         </Link>
-
-
                     </CarouselItem>
                 ))}
             </CarouselContent>
@@ -53,4 +54,4 @@ const NewsCard = ({rubric}) => {
     );
 };
 
-export default NewsCard;
+export default AllNewsCarousel;
