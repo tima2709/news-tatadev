@@ -6,7 +6,7 @@ import CopyToClipboard from '@/components/shared/copyToClipboard';
 
 const ShareSocialMedia = async ({ news, pageEndpoint }) => {
     const shareMedia = await getSocialShareMedia();
-    const metaData = await getMetaTags(`${pageEndpoint}${news.slug}`);
+    const metaData = await getMetaTags(`${pageEndpoint}${news?.slug}`);
     const {
         title,
         keywords,

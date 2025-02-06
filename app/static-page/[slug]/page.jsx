@@ -2,6 +2,7 @@ import React from 'react';
 import {getMetaTags, getStaticPagesBySlug} from "@/lib/fetchData";
 import {Container} from "@/components/shared/container";
 import {headers} from "next/headers";
+import NotFound from "@/app/not-found";
 
 export async function generateMetadata({params}) {
     const {slug} = await params;
@@ -41,10 +42,14 @@ const Page = async ({params}) => {
 
     const staticData = await getStaticPagesBySlug(slug);
 
+    if (!staticData) {
+        return <NotFound/>
+    }
+
     return (
         <Container className="min-h-[600px] pt-6">
             <div className="bg-white p-6 rounded-lg">
-                <h2 className="mb-6">{staticData.title}</h2>
+                <h2 className="mb-6">{staticData?.title}</h2>
                 <div
                     dangerouslySetInnerHTML={{__html: staticData?.content}}
                     className="ck-content"

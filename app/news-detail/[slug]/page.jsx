@@ -12,8 +12,7 @@ import {format} from "date-fns";
 import ShareSocialMedia from "@/components/shared/share-social-media";
 import {headers} from "next/headers";
 import FancyboxClient from '@/components/ui/fancybox';
-
-
+import NotFound from "@/app/not-found";
 
 
 export async function generateMetadata({params}) {
@@ -52,8 +51,12 @@ export async function generateMetadata({params}) {
 const Page = async ({params}) => {
     const {slug} = await params;
     const news = await getOneNews(slug);
-    const galleryDelegate = "detail-gallery";
 
+    if (!news) {
+        return <NotFound/>
+    }
+
+    const galleryDelegate = "detail-gallery";
     const createdDate = format(news?.created_at, "dd.MM.yyyy")
     const similarNews = await getSimilarNewsList(slug, "5");
     const authorsNews = await getNewsByAuthor(news?.author?.slug, slug, true)
@@ -65,22 +68,23 @@ const Page = async ({params}) => {
                 <div className="md:p-6 md:border md:border-[#E0EBFF] bg-white rounded-lg md:mb-6 mb-10">
                     <div className="flex items-center justify-between mb-5">
                         <Link href={`/search?rubric=${news?.rubric?.slug}&page=1`}><span
-                            className="font-bold text-[#1757B9] text-sm">{news.rubric?.title}</span></Link>
+                            className="font-bold text-[#1757B9] text-sm">{news?.rubric?.title}</span></Link>
                         <span className="font-normal text-[#777E98] text-xs">{createdDate}</span>
                     </div>
                     <h2 className="text-2xl font-bold mb-4">
                         {news?.title}
                     </h2>
                     <FancyboxClient delegate={`[data-fancybox="${galleryDelegate}"]`}>
-                    {news?.media && <DetailNewsImgCarousel media={news?.media} galleryDelegate={galleryDelegate}/>}
-                    <div
-                        dangerouslySetInnerHTML={{__html: content}}
-                        className="ck-content mb-5 "
-                    ></div>    
-                    </FancyboxClient> 
-                    
+                        {news?.media && <DetailNewsImgCarousel media={news?.media} galleryDelegate={galleryDelegate}/>}
+                        <div
+                            dangerouslySetInnerHTML={{__html: content}}
+                            className="ck-content mb-5 "
+                        ></div>
+                    </FancyboxClient>
+
                     <div className="my-5">
-                        {news?.author?.full_name && <Link href={`/search?author=${news?.author?.slug}&page=1`}><span className="text-xs font-normal text-[#1757B9]">Автор: {news?.author?.full_name}</span></Link>}
+                        {news?.author?.full_name && <Link href={`/search?author=${news?.author?.slug}&page=1`}><span
+                            className="text-xs font-normal text-[#1757B9]">Автор: {news?.author?.full_name}</span></Link>}
                     </div>
                     <div className="flex flex-wrap items-center gap-2 mt-5 mb-6">
                         {news?.tags?.map((tag) => (
@@ -95,30 +99,32 @@ const Page = async ({params}) => {
                         <ShareSocialMedia news={news} pageEndpoint="/news-detail/"/>
                     </div>
                 </div>
-                <AddComments slug={news.slug}/>
+                <AddComments slug={news?.slug}/>
             </div>
-           <div>
-               {
-                   similarNews?.length > 0 && (
-                       <div className="lg:w-[267px] mb-5 h-max w-full lg:mt-0 mt-6 md:border border-[#E0EBFF] rounded-lg bg-white h-full">
-                           <h4 className="text-sm mt-7 mb-4 text-center font-bold">
-                               Похожие публикации
-                           </h4>
-                           <TopPublicationsCard classname="last:mb-8" newsList={similarNews}/>
-                       </div>
-                   )
-               }
-               {
-                   authorsNews?.results?.length > 0 && (
-                       <div className="lg:w-[267px] h-max w-full lg:mt-0 mt-6 md:border border-[#E0EBFF] rounded-lg bg-white h-full">
-                           <h4 className="text-sm mt-7 mb-4 text-center font-bold">
-                               Статьи этого автора
-                           </h4>
-                           <TopPublicationsCard classname="last:mb-8" newsList={authorsNews?.results}/>
-                       </div>
-                   )
-               }
-           </div>
+            <div>
+                {
+                    similarNews?.length > 0 && (
+                        <div
+                            className="lg:w-[267px] mb-5 h-max w-full lg:mt-0 mt-6 md:border border-[#E0EBFF] rounded-lg bg-white h-full">
+                            <h4 className="text-sm mt-7 mb-4 text-center font-bold">
+                                Похожие публикации
+                            </h4>
+                            <TopPublicationsCard classname="last:mb-8" newsList={similarNews}/>
+                        </div>
+                    )
+                }
+                {
+                    authorsNews?.results?.length > 0 && (
+                        <div
+                            className="lg:w-[267px] h-max w-full lg:mt-0 mt-6 md:border border-[#E0EBFF] rounded-lg bg-white h-full">
+                            <h4 className="text-sm mt-7 mb-4 text-center font-bold">
+                                Статьи этого автора
+                            </h4>
+                            <TopPublicationsCard classname="last:mb-8" newsList={authorsNews?.results}/>
+                        </div>
+                    )
+                }
+            </div>
 
         </Container>
     );

@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ShareSocialMedia from "@/components/shared/share-social-media";
 import {headers} from "next/headers";
+import NotFound from "@/app/not-found";
 
 export async function generateMetadata({params}) {
     const {slug} = await params;
@@ -45,6 +46,10 @@ const Page = async ({params}) => {
     const {slug} = await params;
 
     const news = await getOneAttentionsData(slug);
+
+    if (!news) {
+        return <NotFound/>
+    }
 
     const createdDate = format(news?.created_at, "dd.MM.yyyy")
 

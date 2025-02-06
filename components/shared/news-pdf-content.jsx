@@ -51,7 +51,7 @@ const NewsPdfContent = ({pdfNewsFiles, pdfNewsYears, slug}) => {
                 >
                     <CarouselContent className="sm:max-w-[281px] max-w-[250px] w-full">
                         {
-                            pdfNewsYears.map((year) => (
+                            pdfNewsYears?.map((year) => (
                                 <Link key={year} href={`/archive-releases/${year}`}>
                                     <CarouselItem className="md:basis-1/5 basis-1/3">
                                         <p className={`text-[#1757B9] text-sm font-medium py-[7px] px-[10px] ${slug == year ? "bg-[#E0EBFF] rounded-lg" : ""}`}>{year}</p>
