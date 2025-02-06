@@ -23,7 +23,7 @@ const MainNewsLists = async () => {
                     <HorizontalNews mainNewsList={mainNewsList}/>
                 </div>
                 <div className="lg:sticky top-0 lg:mt-0 mt-24 lg:border border-[#E0EBFF] rounded-lg lg:bg-white h-full">
-                    <h4 className="md:text-sm text-[22px] mt-7 mb-4 text-center font-bold">Топ публикации</h4>
+                    <h4 className="md:text-sm text-[22px] mt-7 mb-4 text-center font-bold">Топ публикаций</h4>
                     <TopPublicationsCard className="last:mb-8" newsList={topList}/>
                 </div>
                 <OurMagazine className="lg:hidden" cardClass="max-w-[388px] w-full max-h-[554px] h-full"/>
