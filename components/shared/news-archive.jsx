@@ -27,6 +27,9 @@ const NewsArchive = ({ className, page }) => {
     const datesWithContent = contentDates?.map(item => new Date(item.date));
 
     const handleSearchData = (selectedDate) => {
+        if (!selectedDate) {
+            return router.push(`/${page}?date=${todayDay}`);
+        }
         setDate(selectedDate);
         const createdDate = format(selectedDate, "yyyy-MM-dd");
         router.push(`/${page}?date=${createdDate}`);
