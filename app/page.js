@@ -47,7 +47,8 @@ export default function Home() {
             <Container className="pb-12">
                 <RunningNews/>
                 <WeatherExchange
-                    className="lg:hidden mt-6 flex md:flex-row mb-6 flex-col gap-4 md:justify-center justify-start  p-4 border border-[#E0EBFF] rounded-lg bg-white"/>
+                    className="lg:hidden mt-6 flex md:flex-row mb-6 flex-col gap-4 md:justify-center justify-start  p-4 border border-[#E0EBFF] rounded-lg bg-white"
+                />
                 <MainNewsLists/>
                 <NewsRubrics/>
                 <PartnersRunning/>

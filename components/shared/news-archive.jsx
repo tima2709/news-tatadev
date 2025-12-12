@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { format, startOfMonth } from "date-fns";
-import {useRouter, useSearchParams} from "next/navigation";
+import {useRouter} from "next/navigation";
 import { getDateNews } from "@/lib/fetchData";
 import { ru } from "date-fns/locale/ru";
 
@@ -62,20 +62,8 @@ const NewsArchive = ({ className, page }) => {
                 }
                 className="p-0"
                 modifiers={{ hasContent: hasContent }}
-                modifiersStyles={{
-                    hasContent: {
-                        position: 'relative'
-                    }
-                }}
-                components={{
-                    DayContent: ({ date }) => (
-                        <div className="relative w-full h-full flex items-center justify-center">
-                            {date.getDate()}
-                            {hasContent(date) && (
-                                <div className="absolute bottom-1 w-1 h-1 bg-current rounded-full" />
-                            )}
-                        </div>
-                    )
+                modifiersClassNames={{
+                    hasContent: "after:content-[''] after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-current after:rounded-full"
                 }}
             />
         </div>
